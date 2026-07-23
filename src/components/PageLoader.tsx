@@ -1,44 +1,63 @@
 import { motion } from "framer-motion";
-import portrait from "/me.jpeg";
+
+const heroBg = "/hero-bg.png";
 
 export const PageLoader = ({ onLoadComplete }: { onLoadComplete: () => void }) => {
   return (
     <motion.div
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.8 }}
-      className="fixed inset-0 z-50 flex items-center justify-center"
+      transition={{ duration: 0.7 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden"
       onAnimationComplete={onLoadComplete}
     >
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{ 
-          backgroundImage: `url(${portrait})`,
-          filter: 'blur(8px) brightness(0.7)',
+      {/* Soft photo background */}
+      <div
+        className="absolute inset-0 bg-cover bg-center scale-110"
+        style={{
+          backgroundImage: `url(${heroBg})`,
+          filter: "blur(6px) brightness(0.95) saturate(0.95)",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-[#B91C1C]/30 to-black/60" />
-      
-      <motion.div
-        initial={{ scale: 0.8, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="relative z-10 text-center text-white"
-      >
-        <motion.h1 
-          className="text-5xl md:text-7xl font-bold mb-4"
-          initial={{ y: 20 }}
-          animate={{ y: 0 }}
+
+      {/* Light cream overlay — photo stays visible */}
+      <div className="absolute inset-0 bg-gradient-to-b from-cream/40 via-cream/30 to-cream/50" />
+
+      {/* Subtle vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,rgba(61,53,48,0.08)_100%)]" />
+
+      <div className="relative z-10 text-center px-6">
+        <motion.p
+          className="section-label mb-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.15 }}
+        >
+          Portfolio
+        </motion.p>
+        <motion.h1
+          className="font-display text-4xl md:text-6xl lg:text-7xl font-medium text-charcoal"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.25 }}
         >
           Cecillia Tan Handoko
         </motion.h1>
         <motion.div
-          className="w-16 h-1 bg-white mx-auto rounded-full"
-          initial={{ width: 0 }}
-          animate={{ width: 64 }}
-          transition={{ delay: 0.3, duration: 0.6 }}
+          className="w-20 h-px bg-blush-dark mx-auto mt-7 origin-center"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ delay: 0.5, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         />
-      </motion.div>
+        <motion.p
+          className="mt-5 text-sm text-charcoal/50 tracking-wide"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+        >
+          Visual Communication Designer
+        </motion.p>
+      </div>
     </motion.div>
   );
 };

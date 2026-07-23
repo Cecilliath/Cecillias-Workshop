@@ -1,25 +1,50 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
+
+const sections = [
+  { id: "home", label: "Home" },
+  { id: "about", label: "About" },
+  { id: "projects", label: "Projects" },
+  { id: "experience", label: "Experience" },
+  { id: "skills", label: "Skills" },
+  { id: "contact", label: "Contact" },
+];
 
 export const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
-  const toggleMenu = () => setIsOpen(!isOpen);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     if (location.hash) {
       const element = document.querySelector(location.hash);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => element.scrollIntoView({ behavior: "smooth" }), 100);
       }
     }
   }, [location]);
 
   const scrollToSection = (section: string, closeMenu = false) => {
     if (closeMenu) setIsOpen(false);
+
+    if (section === "home") {
+      if (location.pathname === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        navigate("/");
+      }
+      return;
+    }
+
     if (location.pathname === "/") {
       document.querySelector(`#${section}`)?.scrollIntoView({ behavior: "smooth" });
     } else {
@@ -27,82 +52,75 @@ export const NavBar: React.FC = () => {
     }
   };
 
-  const sections = ["about", "projects", "contact"];
-
   return (
-    <nav className="w-full fixed top-0 z-50 backdrop-blur-sm bg-white/80 shadow-md transition-all">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link to="/">
-          <h2 className="font-Inter font-bold text-xl md:text-2xl text-[#000] tracking-wide">
-            <span className="text-[#B91C1C]">Cecillia </span>Tan Handoko
-          </h2>
+    <nav
+      className={`w-full fixed top-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-soft-white/90 backdrop-blur-md shadow-soft border-b border-beige/40"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-5 md:px-10 h-16 md:h-[4.5rem] flex items-center justify-between">
+        <Link
+          to="/"
+          onClick={() => scrollToSection("home")}
+          className="font-display text-xl md:text-2xl font-semibold text-charcoal tracking-tight"
+        >
+          Cecillia<span className="text-brown-light italic">.</span>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-12">
-          <Link
-            to="/"
-            className="font-Roboto text-base md:text-lg relative text-[#000] hover:text-[#B91C1C] transition-all duration-300
-              after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-[#B91C1C] after:rounded-full after:transition-all after:duration-300
-              hover:after:w-full"
-          >
-            Home
-          </Link>
+        <div className="hidden lg:flex items-center gap-8">
           {sections.map((section) => (
-            <a
-              key={section}
-              href={`#${section}`}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(section);
-              }}
-              className="font-Roboto text-base md:text-lg relative text-[#000] hover:text-[#B91C1C] transition-all duration-300
-                after:absolute after:bottom-0 after:left-0 after:h-[3px] after:w-0 after:bg-[#B91C1C] after:rounded-full after:transition-all after:duration-300
-                hover:after:w-full"
+            <button
+              key={section.id}
+              onClick={() => scrollToSection(section.id)}
+              className="relative text-sm font-medium text-charcoal/70 hover:text-brown transition-colors duration-300
+                after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-blush-dark
+                after:transition-all after:duration-300 hover:after:w-full"
             >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </a>
+              {section.label}
+            </button>
           ))}
         </div>
 
         {/* Mobile Hamburger */}
-        <div className="md:hidden">
-          <button onClick={toggleMenu} className="text-[#B91C1C]">
-            {isOpen ? (
-              <FiX className="text-3xl" />
-            ) : (
-              <FiMenu className="text-3xl" />
-            )}
-          </button>
-        </div>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="lg:hidden p-2 text-brown rounded-xl hover:bg-beige/50 transition-colors"
+          aria-label="Toggle menu"
+        >
+          {isOpen ? <FiX className="text-2xl" /> : <FiMenu className="text-2xl" />}
+        </button>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-sm border-t border-gray-200 shadow-lg px-6 py-6 flex flex-col gap-5 animate-slideDown">
-          <Link
-            to="/"
-            onClick={() => setIsOpen(false)}
-            className="font-Roboto text-base text-[#000] hover:text-[#B91C1C] transition-all duration-200"
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden overflow-hidden bg-soft-white/95 backdrop-blur-md border-t border-beige/40"
           >
-            Home
-          </Link>
-          {sections.map((section) => (
-            <a
-              key={section}
-              href={`#${section}`}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection(section, true);
-              }}
-              className="font-Roboto text-base text-[#000] hover:text-[#B91C1C] transition-all duration-200"
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </a>
-          ))}
-        </div>
-      )}
+            <div className="px-5 py-6 flex flex-col gap-1">
+              {sections.map((section, i) => (
+                <motion.button
+                  key={section.id}
+                  initial={{ opacity: 0, x: -12 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  onClick={() => scrollToSection(section.id, true)}
+                  className="text-left py-3 px-4 text-charcoal/80 hover:text-brown hover:bg-beige/30 rounded-xl transition-all text-base font-medium"
+                >
+                  {section.label}
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
