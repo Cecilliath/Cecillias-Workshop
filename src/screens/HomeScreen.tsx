@@ -14,7 +14,11 @@ import { ScrollReveal } from "../components/ScrollReveal";
 import { FloatingDecorations } from "../components/FloatingDecorations";
 
 import portrait from "/me.jpeg";
-import { useGoogleDriveProjects } from "../hooks/useGoogleDriveProjects";
+import { projectsData, filterCategories } from "../data/projectsData";
+import type { ProjectCategory, ProjectItem } from "../data/projectsData";
+import { FeaturedMotionCV } from "../components/FeaturedMotionCV";
+import { ProjectCard } from "../components/ProjectCard";
+import { ProjectDetailModal } from "../components/ProjectDetailModal";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 32 },
@@ -61,14 +65,14 @@ const experience = [
 export const HomeScreen: React.FC = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
-  const { projects, categories: projectCategories } = useGoogleDriveProjects();
-  const [projectCategory, setProjectCategory] = useState<string>("All");
+  const [activeFilter, setActiveFilter] = useState<ProjectCategory>("ALL");
+  const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
-  const filteredProjects = projects
-    .map((item, index) => ({ item, index }))
-    .filter(
-      ({ item }) => projectCategory === "All" || item.category === projectCategory
-    );
+  const featuredMotionCV = projectsData.find((p) => p.isFeatured);
+  const filteredProjects = projectsData.filter((p) => {
+    if (activeFilter === "ALL") return true;
+    return p.category === activeFilter;
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => setShowLoader(false), 1100);
@@ -220,19 +224,23 @@ export const HomeScreen: React.FC = () => {
                       </a>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                      {projects.slice(0, 3).map((item, i) => (
-                        <Link key={i} to={`/gallery/${i}`} className="group">
+                      {projectsData.slice(0, 3).map((item, i) => (
+                        <div
+                          key={i}
+                          onClick={() => setSelectedProject(item)}
+                          className="group cursor-pointer"
+                        >
                           <motion.div whileHover={{ y: -4 }} className="card-soft overflow-hidden">
                             <div className="aspect-[4/3] overflow-hidden bg-beige/20">
                               <img
-                                src={item.image}
-                                alt={item.name}
+                                src={item.thumbnail}
+                                alt={item.title}
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                               />
                             </div>
-                            <p className="p-3 text-sm font-medium text-charcoal line-clamp-1">{item.name}</p>
+                            <p className="p-3 text-sm font-medium text-charcoal line-clamp-1">{item.title}</p>
                           </motion.div>
-                        </Link>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -253,9 +261,9 @@ export const HomeScreen: React.FC = () => {
               <ScrollReveal>
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
                   <div>
-                    <p className="section-label mb-2">Portfolio</p>
+                    <p className="section-label mb-2">SELECTED WORKS</p>
                     <div className="flex items-center gap-3 flex-wrap mb-2">
-                      <h2 className="section-title">Selected Projects</h2>
+                      <h2 className="section-title">Projects & Visual Work</h2>
                       <a
                         href="https://drive.google.com/drive/folders/1WROCCh04L3UvlNd59WW6BZ0HldeFqsb5?usp=drive_link"
                         target="_blank"
@@ -269,24 +277,25 @@ export const HomeScreen: React.FC = () => {
                     </div>
                     <div className="section-divider" />
                   </div>
-                  <p className="text-charcoal/50 text-base max-w-sm md:text-right">
-                    Creative works and visual explorations extracted from Google Drive subfolders.
+                  <p className="text-charcoal/60 text-sm md:text-base max-w-md md:text-right">
+                    A collection of selected works across motion, graphic design, illustration, and digital media.
                   </p>
                 </div>
               </ScrollReveal>
 
-              <div className="flex flex-wrap items-center gap-2.5 mb-10">
-                {(["All", ...projectCategories] as string[]).map((category) => {
-                  const isActive = projectCategory === category;
+              {/* Category Filter Pills */}
+              <div className="flex flex-wrap items-center gap-2 md:gap-2.5 mb-12">
+                {filterCategories.map((category) => {
+                  const isActive = activeFilter === category;
                   return (
                     <button
                       key={category}
                       type="button"
-                      onClick={() => setProjectCategory(category)}
-                      className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                      onClick={() => setActiveFilter(category)}
+                      className={`rounded-full px-4 py-2 text-xs md:text-sm font-medium transition-all ${
                         isActive
                           ? "bg-charcoal text-cream shadow-sm"
-                          : "bg-cream text-charcoal/70 border border-beige hover:border-charcoal/25"
+                          : "bg-cream text-charcoal/70 border border-beige/80 hover:border-charcoal/30 hover:bg-cream/80"
                       }`}
                     >
                       {category}
@@ -295,71 +304,45 @@ export const HomeScreen: React.FC = () => {
                 })}
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                {filteredProjects.map(({ item, index }, i) => (
-                  <ScrollReveal key={item.name + index} delay={i * 0.05} direction={i % 2 === 0 ? "up" : "scale"}>
-                    <Link to={`/gallery/${index}`} className="group block h-full">
-                      <motion.div
-                        whileHover={{ y: -8 }}
-                        transition={{ duration: 0.35 }}
-                        className="card-soft overflow-hidden hover:shadow-elevated transition-shadow duration-500 flex flex-col h-full"
-                      >
-                        <div className="aspect-[4/5] overflow-hidden bg-beige/20 relative">
-                          <motion.img
-                            src={item.image}
-                            alt={item.name}
-                            className="w-full h-full object-cover"
-                            whileHover={{ scale: 1.08 }}
-                            transition={{ duration: 0.6 }}
-                            onError={(e) => {
-                              if (item.id) {
-                                (e.target as HTMLImageElement).src = `https://drive.google.com/thumbnail?id=${item.id}&sz=w800`;
-                              }
-                            }}
-                          />
-                          {item.category && (
-                            <span className="absolute top-3 left-3 bg-charcoal/80 backdrop-blur-md text-cream text-[11px] font-medium px-2.5 py-1 rounded-full">
-                              {item.category}
-                            </span>
-                          )}
-                          <motion.div
-                            className="absolute inset-0 bg-brown/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5"
-                            initial={false}
-                          >
-                            <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                              View project →
-                            </span>
-                          </motion.div>
-                        </div>
-                        <div className="p-5 flex items-center justify-between mt-auto">
-                          <div>
-                            <p className="text-xs section-label mb-1">
-                              {item.category || "Project"}
-                            </p>
-                            <h3 className="font-display text-lg font-medium text-charcoal line-clamp-1">
-                              {item.name}
-                            </h3>
-                          </div>
-                          <motion.div
-                            whileHover={{ rotate: 45, scale: 1.1 }}
-                            className="w-10 h-10 rounded-full bg-beige/40 flex items-center justify-center group-hover:bg-blush/50 transition-colors duration-300 shrink-0 ml-2"
-                          >
-                            <FiArrowUpRight className="text-brown" />
-                          </motion.div>
-                        </div>
-                      </motion.div>
-                    </Link>
-                  </ScrollReveal>
-                ))}
+              {/* FEATURED MOTION CV (Shown at top for ALL or MOTION filter) */}
+              {(activeFilter === "ALL" || activeFilter === "MOTION") && featuredMotionCV && (
+                <FeaturedMotionCV
+                  project={featuredMotionCV}
+                  onSelectProject={(p) => setSelectedProject(p)}
+                />
+              )}
+
+              {/* EDITORIAL PROJECT GRID */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-start">
+                {filteredProjects
+                  .filter((p) => !(p.isFeatured && (activeFilter === "ALL" || activeFilter === "MOTION")))
+                  .map((project, i) => (
+                    <ScrollReveal
+                      key={project.id}
+                      delay={i * 0.06}
+                      direction={i % 2 === 0 ? "up" : "scale"}
+                    >
+                      <ProjectCard
+                        project={project}
+                        onSelectProject={(p) => setSelectedProject(p)}
+                      />
+                    </ScrollReveal>
+                  ))}
               </div>
 
               {filteredProjects.length === 0 && (
-                <p className="text-sm text-charcoal/45 text-center py-12">
-                  No projects in this category yet.
+                <p className="text-sm text-charcoal/45 text-center py-16">
+                  No projects available in this category yet.
                 </p>
               )}
             </div>
           </motion.section>
+
+          {/* PROJECT DETAIL MODAL */}
+          <ProjectDetailModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
 
           {/* ─── EXPERIENCE ─── */}
           <motion.section
