@@ -15,10 +15,10 @@ const OUTLINE_PATH =
   "M 248 12 C 348 5 445 52 482 152 C 518 252 492 362 425 448 C 358 534 258 582 168 565 C 78 548 18 468 8 368 C -2 268 48 168 128 102 C 178 62 198 6 248 12 Z";
 
 const PORTRAIT_CROP = {
-  x: -230,
-  y: -65,
-  width: 760,
-  height: 820,
+  x: -48,
+  y: -40,
+  width: 570,
+  height: 700,
 };
 
 export const HeroPortrait: React.FC<HeroPortraitProps> = ({

@@ -118,7 +118,8 @@ export const HomeScreen: React.FC = () => {
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.16 }}
-                      className="text-charcoal/65 text-[0.8rem] sm:text-sm md:text-[0.9rem] leading-[1.65] max-w-xl lg:max-w-[44.5rem] mb-4 md:mb-5 text-justify"
+                      className="text-charcoal/65 text-[0.8rem] sm:text-sm md:text-[0.9rem] leading-[1.65] max-w-xl lg:max-w-[40
+                      .5rem] mb-4 md:mb-5 text-justify"
                     >
                       I am a Visual Communication Design undergraduate at Universitas Tarumanagara
                       with a passion for digital illustration, graphic design, branding, motion
@@ -140,10 +141,10 @@ export const HomeScreen: React.FC = () => {
                       className="mb-5 md:mb-6 space-y-2.5"
                     >
                       <p className="text-sm md:text-base text-charcoal/60 flex flex-wrap items-center gap-x-2 gap-y-1">
-                        <span className="font-medium text-charcoal/80 text-base md:text-lg">Universitas Tarumanagara</span>
+                        <span className="font-medium text-charcoal/80 text-base md:text-sm">Universitas Tarumanagara</span>
                         <span className="text-beige font-bold">·</span>
-                        <span className="inline-flex items-center gap-1">
-                          <HiOutlineMapPin className="text-brown-light text-lg" />
+                        <span className="inline-flex items-center gap-1 md:text-sm">
+                          <HiOutlineMapPin className="text-brown-light md:text-sm" />
                           Jakarta, Indonesia
                         </span>
                       </p>
@@ -158,7 +159,7 @@ export const HomeScreen: React.FC = () => {
                           <motion.span
                             key={skill.label}
                             whileHover={{ scale: 1.05, y: -2 }}
-                            className="inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-medium text-brown px-4 py-1.5 rounded-full bg-soft-white/80 border border-beige/70 shadow-xs hover:border-blush-dark hover:bg-blush/20 transition-all cursor-default leading-none"
+                            className="inline-flex items-center gap-1.5 whitespace-nowrap text-xs font-medium text-brown px-4 py-1.5 rounded-full bg-soft-white/80 border border-beige/70 shadow-xs hover:border-blush-dark hover:bg-blush/20 transition-all cursor-default leading-none"
                           >
                             <span className="inline-flex w-[1.1em] h-[1.1em] items-center justify-center text-[0.95em] leading-none">
                               {skill.icon}
