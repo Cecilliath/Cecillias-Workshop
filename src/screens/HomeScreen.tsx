@@ -14,7 +14,7 @@ import { ScrollReveal } from "../components/ScrollReveal";
 import { FloatingDecorations } from "../components/FloatingDecorations";
 
 import portrait from "/me.jpeg";
-import { artGalleryItems } from "../data/artGalleryItems";
+import { artGalleryItems, projectCategories } from "../data/artGalleryItems";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 32 },
@@ -61,6 +61,15 @@ const experience = [
 export const HomeScreen: React.FC = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
+  const [projectCategory, setProjectCategory] = useState<"All" | (typeof projectCategories)[number]>(
+    "All"
+  );
+
+  const filteredProjects = artGalleryItems
+    .map((item, index) => ({ item, index }))
+    .filter(
+      ({ item }) => projectCategory === "All" || item.category === projectCategory
+    );
 
   useEffect(() => {
     const timer = setTimeout(() => setShowLoader(false), 1100);
@@ -109,7 +118,7 @@ export const HomeScreen: React.FC = () => {
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.16 }}
-                      className="text-charcoal/65 text-[0.8rem] sm:text-sm md:text-[0.9rem] leading-[1.65] max-w-xl mb-4 md:mb-5"
+                      className="text-charcoal/65 text-[0.8rem] sm:text-sm md:text-[0.9rem] leading-[1.65] max-w-xl lg:max-w-[44.5rem] mb-4 md:mb-5 text-justify"
                     >
                       I am a Visual Communication Design undergraduate at Universitas Tarumanagara
                       with a passion for digital illustration, graphic design, branding, motion
@@ -130,28 +139,31 @@ export const HomeScreen: React.FC = () => {
                       transition={{ delay: 0.24 }}
                       className="mb-5 md:mb-6 space-y-2.5"
                     >
-                      <p className="text-xs text-charcoal/60 flex flex-wrap items-center gap-x-2 gap-y-1">
-                        <span className="font-medium text-charcoal/80">Universitas Tarumanagara</span>
+                      <p className="text-sm md:text-base text-charcoal/60 flex flex-wrap items-center gap-x-2 gap-y-1">
+                        <span className="font-medium text-charcoal/80 text-base md:text-lg">Universitas Tarumanagara</span>
                         <span className="text-beige font-bold">·</span>
                         <span className="inline-flex items-center gap-1">
-                          <HiOutlineMapPin className="text-brown-light text-sm" />
+                          <HiOutlineMapPin className="text-brown-light text-lg" />
                           Jakarta, Indonesia
                         </span>
                       </p>
 
-                      <div className="flex flex-wrap items-center gap-2 pt-1">
+                      <div className="flex flex-wrap items-center gap-2.5 pt-1">
                         {[
-                          "✦ Branding & Identity",
-                          "🎨 Editorial & Print",
-                          "🎬 Motion Graphics",
-                          "✒ UI/UX & Digital Illustration",
-                        ].map((skill, idx) => (
+                          { icon: "✦", label: "Branding & Identity" },
+                          { icon: "🎨", label: "Editorial & Print" },
+                          { icon: "🎬", label: "Motion Graphics" },
+                          { icon: "💻", label: "UI/UX & Illustration" },
+                        ].map((skill) => (
                           <motion.span
-                            key={idx}
+                            key={skill.label}
                             whileHover={{ scale: 1.05, y: -2 }}
-                            className="text-[11px] font-medium text-brown px-3 py-1 rounded-full bg-soft-white/80 border border-beige/70 shadow-xs hover:border-blush-dark hover:bg-blush/20 transition-all cursor-default"
+                            className="inline-flex items-center gap-1.5 whitespace-nowrap text-sm font-medium text-brown px-4 py-1.5 rounded-full bg-soft-white/80 border border-beige/70 shadow-xs hover:border-blush-dark hover:bg-blush/20 transition-all cursor-default leading-none"
                           >
-                            {skill}
+                            <span className="inline-flex w-[1.1em] h-[1.1em] items-center justify-center text-[0.95em] leading-none">
+                              {skill.icon}
+                            </span>
+                            {skill.label}
                           </motion.span>
                         ))}
                       </div>
@@ -252,10 +264,30 @@ export const HomeScreen: React.FC = () => {
                 </div>
               </ScrollReveal>
 
+              <div className="flex flex-wrap items-center gap-2.5 mb-10">
+                {(["All", ...projectCategories] as const).map((category) => {
+                  const isActive = projectCategory === category;
+                  return (
+                    <button
+                      key={category}
+                      type="button"
+                      onClick={() => setProjectCategory(category)}
+                      className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                        isActive
+                          ? "bg-charcoal text-cream shadow-sm"
+                          : "bg-cream text-charcoal/70 border border-beige hover:border-charcoal/25"
+                      }`}
+                    >
+                      {category}
+                    </button>
+                  );
+                })}
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                {artGalleryItems.map((item, i) => (
-                  <ScrollReveal key={i} delay={i * 0.08} direction={i % 2 === 0 ? "up" : "scale"}>
-                    <Link to={`/gallery/${i}`} className="group block">
+                {filteredProjects.map(({ item, index }, i) => (
+                  <ScrollReveal key={item.name} delay={i * 0.08} direction={i % 2 === 0 ? "up" : "scale"}>
+                    <Link to={`/gallery/${index}`} className="group block">
                       <motion.div
                         whileHover={{ y: -8 }}
                         transition={{ duration: 0.35 }}
@@ -297,6 +329,12 @@ export const HomeScreen: React.FC = () => {
                   </ScrollReveal>
                 ))}
               </div>
+
+              {filteredProjects.length === 0 && (
+                <p className="text-sm text-charcoal/45 text-center py-12">
+                  No projects in this category yet.
+                </p>
+              )}
             </div>
           </motion.section>
 

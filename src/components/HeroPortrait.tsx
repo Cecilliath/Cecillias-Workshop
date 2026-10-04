@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState } from "react";
-import { FiSliders, FiRotateCcw, FiX, FiCheck } from "react-icons/fi";
+import { FiSliders, FiRotateCcw, FiX } from "react-icons/fi";
 
 interface HeroPortraitProps {
   src: string;
@@ -32,7 +32,6 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({
   onLoad,
 }) => {
   const [showAdjuster, setShowAdjuster] = useState(false);
-  const [savedSuccess, setSavedSuccess] = useState(false);
 
   const [config, setConfig] = useState(() => {
     try {
@@ -47,7 +46,7 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({
   });
 
   const updateConfig = (key: keyof typeof DEFAULT_CONFIG, value: any) => {
-    setConfig((prev) => {
+    setConfig((prev: typeof DEFAULT_CONFIG) => {
       const updated = { ...prev, [key]: value };
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
@@ -56,7 +55,6 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({
       }
       return updated;
     });
-    triggerSavedFeedback();
   };
 
   const setPreset = (presetConfig: typeof DEFAULT_CONFIG) => {
@@ -66,32 +64,14 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({
     } catch {
       // ignore storage errors
     }
-    triggerSavedFeedback();
   };
 
   const resetConfig = () => {
     setPreset(DEFAULT_CONFIG);
   };
 
-  const triggerSavedFeedback = () => {
-    setSavedSuccess(true);
-    setTimeout(() => setSavedSuccess(false), 1200);
-  };
-
   return (
     <div className="relative w-full max-w-[22rem] sm:max-w-[26rem] md:max-w-[30rem] lg:max-w-[34rem] xl:max-w-[38rem] mx-auto lg:ml-auto lg:mr-0">
-      {/* Interactive Adjustment Toggle Button */}
-      <div className="absolute top-2 left-2 z-30">
-        <button
-          onClick={() => setShowAdjuster(!showAdjuster)}
-          className="px-3 py-1.5 rounded-full bg-soft-white/95 backdrop-blur-md shadow-soft border border-beige/80 text-[11px] font-medium text-brown flex items-center gap-1.5 hover:bg-beige/40 hover:border-brown-light transition-all active:scale-95 cursor-pointer opacity-70 hover:opacity-100"
-          title="Adjust photo position and scale"
-        >
-          <FiSliders className="text-xs text-brown-light" />
-          {showAdjuster ? "Close Adjuster" : "Adjust Photo"}
-          {savedSuccess && <FiCheck className="text-emerald-600 text-xs animate-bounce" />}
-        </button>
-      </div>
 
       {/* Adjuster Controls Popover Card */}
       <AnimatePresence>
