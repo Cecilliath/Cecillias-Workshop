@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { SiGmail, SiInstagram, SiWhatsapp } from "react-icons/si";
+import { SiGmail, SiInstagram, SiWhatsapp, SiGoogledrive } from "react-icons/si";
 import { HiOutlineMapPin } from "react-icons/hi2";
 import { FiArrowUpRight, FiDownload } from "react-icons/fi";
 
@@ -14,7 +14,7 @@ import { ScrollReveal } from "../components/ScrollReveal";
 import { FloatingDecorations } from "../components/FloatingDecorations";
 
 import portrait from "/me.jpeg";
-import { artGalleryItems, projectCategories } from "../data/artGalleryItems";
+import { useGoogleDriveProjects } from "../hooks/useGoogleDriveProjects";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 32 },
@@ -61,11 +61,10 @@ const experience = [
 export const HomeScreen: React.FC = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
-  const [projectCategory, setProjectCategory] = useState<"All" | (typeof projectCategories)[number]>(
-    "All"
-  );
+  const { projects, categories: projectCategories } = useGoogleDriveProjects();
+  const [projectCategory, setProjectCategory] = useState<string>("All");
 
-  const filteredProjects = artGalleryItems
+  const filteredProjects = projects
     .map((item, index) => ({ item, index }))
     .filter(
       ({ item }) => projectCategory === "All" || item.category === projectCategory
@@ -221,7 +220,7 @@ export const HomeScreen: React.FC = () => {
                       </a>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                      {artGalleryItems.slice(0, 3).map((item, i) => (
+                      {projects.slice(0, 3).map((item, i) => (
                         <Link key={i} to={`/gallery/${i}`} className="group">
                           <motion.div whileHover={{ y: -4 }} className="card-soft overflow-hidden">
                             <div className="aspect-[4/3] overflow-hidden bg-beige/20">
@@ -231,7 +230,7 @@ export const HomeScreen: React.FC = () => {
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                               />
                             </div>
-                            <p className="p-3 text-sm font-medium text-charcoal">{item.name}</p>
+                            <p className="p-3 text-sm font-medium text-charcoal line-clamp-1">{item.name}</p>
                           </motion.div>
                         </Link>
                       ))}
@@ -252,21 +251,32 @@ export const HomeScreen: React.FC = () => {
 
             <div className="max-w-6xl mx-auto relative z-10">
               <ScrollReveal>
-                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
                   <div>
-                    <p className="section-label mb-3">Portfolio</p>
-                    <h2 className="section-title">Selected Projects</h2>
+                    <p className="section-label mb-2">Portfolio</p>
+                    <div className="flex items-center gap-3 flex-wrap mb-2">
+                      <h2 className="section-title">Selected Projects</h2>
+                      <a
+                        href="https://drive.google.com/drive/folders/1WROCCh04L3UvlNd59WW6BZ0HldeFqsb5?usp=drive_link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-xs text-brown font-medium hover:underline bg-beige/40 px-3 py-1.5 rounded-full border border-beige/60 transition-colors"
+                      >
+                        <SiGoogledrive className="text-emerald-600 text-sm" />
+                        Google Drive Folder
+                        <FiArrowUpRight className="text-xs" />
+                      </a>
+                    </div>
                     <div className="section-divider" />
                   </div>
                   <p className="text-charcoal/50 text-base max-w-sm md:text-right">
-                    Creative works and visual explorations from coursework and personal
-                    projects.
+                    Creative works and visual explorations extracted from Google Drive subfolders.
                   </p>
                 </div>
               </ScrollReveal>
 
               <div className="flex flex-wrap items-center gap-2.5 mb-10">
-                {(["All", ...projectCategories] as const).map((category) => {
+                {(["All", ...projectCategories] as string[]).map((category) => {
                   const isActive = projectCategory === category;
                   return (
                     <button
@@ -287,12 +297,12 @@ export const HomeScreen: React.FC = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {filteredProjects.map(({ item, index }, i) => (
-                  <ScrollReveal key={item.name} delay={i * 0.08} direction={i % 2 === 0 ? "up" : "scale"}>
-                    <Link to={`/gallery/${index}`} className="group block">
+                  <ScrollReveal key={item.name + index} delay={i * 0.05} direction={i % 2 === 0 ? "up" : "scale"}>
+                    <Link to={`/gallery/${index}`} className="group block h-full">
                       <motion.div
                         whileHover={{ y: -8 }}
                         transition={{ duration: 0.35 }}
-                        className="card-soft overflow-hidden hover:shadow-elevated transition-shadow duration-500"
+                        className="card-soft overflow-hidden hover:shadow-elevated transition-shadow duration-500 flex flex-col h-full"
                       >
                         <div className="aspect-[4/5] overflow-hidden bg-beige/20 relative">
                           <motion.img
@@ -301,9 +311,19 @@ export const HomeScreen: React.FC = () => {
                             className="w-full h-full object-cover"
                             whileHover={{ scale: 1.08 }}
                             transition={{ duration: 0.6 }}
+                            onError={(e) => {
+                              if (item.id) {
+                                (e.target as HTMLImageElement).src = `https://drive.google.com/thumbnail?id=${item.id}&sz=w800`;
+                              }
+                            }}
                           />
+                          {item.category && (
+                            <span className="absolute top-3 left-3 bg-charcoal/80 backdrop-blur-md text-cream text-[11px] font-medium px-2.5 py-1 rounded-full">
+                              {item.category}
+                            </span>
+                          )}
                           <motion.div
-                            className="absolute inset-0 bg-brown/0 group-hover:bg-brown/10 transition-colors duration-500 flex items-end p-5"
+                            className="absolute inset-0 bg-brown/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-5"
                             initial={false}
                           >
                             <span className="text-white text-sm font-medium opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
@@ -311,16 +331,18 @@ export const HomeScreen: React.FC = () => {
                             </span>
                           </motion.div>
                         </div>
-                        <div className="p-5 flex items-center justify-between">
+                        <div className="p-5 flex items-center justify-between mt-auto">
                           <div>
-                            <p className="text-xs section-label mb-1">Project</p>
-                            <h3 className="font-display text-xl font-medium text-charcoal">
+                            <p className="text-xs section-label mb-1">
+                              {item.category || "Project"}
+                            </p>
+                            <h3 className="font-display text-lg font-medium text-charcoal line-clamp-1">
                               {item.name}
                             </h3>
                           </div>
                           <motion.div
                             whileHover={{ rotate: 45, scale: 1.1 }}
-                            className="w-10 h-10 rounded-full bg-beige/40 flex items-center justify-center group-hover:bg-blush/50 transition-colors duration-300"
+                            className="w-10 h-10 rounded-full bg-beige/40 flex items-center justify-center group-hover:bg-blush/50 transition-colors duration-300 shrink-0 ml-2"
                           >
                             <FiArrowUpRight className="text-brown" />
                           </motion.div>

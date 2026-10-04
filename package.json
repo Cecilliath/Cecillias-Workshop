@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "sync-gdrive": "node scripts/sync-gdrive.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
