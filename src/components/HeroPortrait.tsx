@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState } from "react";
 import { FiSliders, FiRotateCcw, FiX } from "react-icons/fi";
-=======
-import { motion } from "framer-motion";
-import React from "react";
->>>>>>> 95259059dc059ca6fe6652b41b9255fd2afcdc36
 
 interface HeroPortraitProps {
   src: string;
