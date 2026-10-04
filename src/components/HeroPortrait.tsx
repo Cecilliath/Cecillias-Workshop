@@ -1,6 +1,5 @@
-import { motion, AnimatePresence } from "framer-motion";
-import React, { useState } from "react";
-import { FiSliders, FiRotateCcw, FiX } from "react-icons/fi";
+import { motion } from "framer-motion";
+import React from "react";
 
 interface HeroPortraitProps {
   src: string;
@@ -15,8 +14,12 @@ const BLOB_PATH =
 const OUTLINE_PATH =
   "M 248 12 C 348 5 445 52 482 152 C 518 252 492 362 425 448 C 358 534 258 582 168 565 C 78 548 18 468 8 368 C -2 268 48 168 128 102 C 178 62 198 6 248 12 Z";
 
-/** Shift crop right/up so Cecillia is centered — cat on the left stays out of frame */
-const PORTRAIT_CROP = { x: -230, y: -65, width: 760, height: 820 };
+const PORTRAIT_CROP = {
+  x: -230,
+  y: -65,
+  width: 760,
+  height: 820,
+};
 
 export const HeroPortrait: React.FC<HeroPortraitProps> = ({
   src,
@@ -24,69 +27,34 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({
   loaded,
   onLoad,
 }) => {
-<<<<<<< HEAD
-  const [showAdjuster, setShowAdjuster] = useState(false);
-
-  const [config, setConfig] = useState(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        return { ...DEFAULT_CONFIG, ...JSON.parse(saved) };
-      }
-    } catch {
-      // fallback if localStorage unavailable
-    }
-    return DEFAULT_CONFIG;
-  });
-
-  const updateConfig = (key: keyof typeof DEFAULT_CONFIG, value: any) => {
-    setConfig((prev: typeof DEFAULT_CONFIG) => {
-      const updated = { ...prev, [key]: value };
-      try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-      } catch {
-        // ignore storage errors
-      }
-      return updated;
-    });
-  };
-
-  const setPreset = (presetConfig: typeof DEFAULT_CONFIG) => {
-    setConfig(presetConfig);
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(presetConfig));
-    } catch {
-      // ignore storage errors
-    }
-  };
-
-  const resetConfig = () => {
-    setPreset(DEFAULT_CONFIG);
-  };
-
   return (
     <div className="relative w-full max-w-[22rem] sm:max-w-[26rem] md:max-w-[30rem] lg:max-w-[34rem] xl:max-w-[38rem] mx-auto lg:ml-auto lg:mr-0">
-=======
-  return (
-    <div className="relative w-full max-w-[22rem] sm:max-w-[26rem] md:max-w-[30rem] lg:max-w-[34rem] xl:max-w-[38rem] mx-auto lg:ml-auto lg:mr-0">
-      <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[90%] h-24 bg-gradient-to-t from-beige/50 to-transparent rounded-full blur-xl pointer-events-none" />
-      <div className="absolute -inset-6 sm:-inset-10 bg-gradient-to-br from-blush/35 via-beige/25 to-warm-beige/15 rounded-[40%] blur-2xl pointer-events-none" />
->>>>>>> 95259059dc059ca6fe6652b41b9255fd2afcdc36
-
       <motion.div
         className="absolute -top-2 -left-3 sm:-left-6 w-5 h-5 rounded-full bg-blush-dark/50"
         animate={{ y: [0, -6, 0] }}
         transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
       />
+
       <motion.div
         className="absolute top-1/4 -right-4 sm:-right-8 w-3 h-3 rounded-full bg-brown-light/40"
         animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.5,
+        }}
       />
+
       <motion.div
         className="absolute bottom-1/3 -left-6 sm:-left-10 w-2 h-2 rounded-full bg-blush/70"
         animate={{ y: [0, -5, 0] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
       />
 
       <svg
@@ -116,7 +84,11 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({
       <motion.div
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.9, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        transition={{
+          duration: 0.9,
+          delay: 0.15,
+          ease: [0.22, 1, 0.36, 1],
+        }}
         className="relative w-full"
         style={{ aspectRatio: "500 / 560" }}
       >
@@ -129,13 +101,29 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({
             <clipPath id="hero-portrait-blob">
               <path d={BLOB_PATH} />
             </clipPath>
-            <linearGradient id="blob-shimmer" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#F0D4D4" stopOpacity="0.3" />
-              <stop offset="100%" stopColor="#E8DFD4" stopOpacity="0.1" />
+
+            <linearGradient
+              id="blob-shimmer"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="100%"
+            >
+              <stop
+                offset="0%"
+                stopColor="#F0D4D4"
+                stopOpacity="0.3"
+              />
+              <stop
+                offset="100%"
+                stopColor="#E8DFD4"
+                stopOpacity="0.1"
+              />
             </linearGradient>
           </defs>
 
           <path d={BLOB_PATH} fill="url(#blob-shimmer)" />
+
           <path
             d={OUTLINE_PATH}
             fill="none"
@@ -143,6 +131,7 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({
             strokeWidth="2"
             opacity="0.45"
           />
+
           <image
             href={src}
             x={PORTRAIT_CROP.x}
@@ -154,6 +143,7 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({
             opacity={loaded ? 1 : 0}
             style={{ transition: "opacity 0.6s ease" }}
           />
+
           <path
             d={BLOB_PATH}
             fill="none"
@@ -163,7 +153,13 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({
           />
         </svg>
 
-        <img src={src} alt={alt} onLoad={onLoad} className="sr-only" aria-hidden />
+        <img
+          src={src}
+          alt={alt}
+          onLoad={onLoad}
+          className="sr-only"
+          aria-hidden
+        />
       </motion.div>
 
       <motion.div
@@ -172,7 +168,10 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({
         transition={{ delay: 0.6, duration: 0.5 }}
         className="absolute -bottom-2 right-2 sm:right-6 bg-soft-white/95 backdrop-blur-sm rounded-2xl px-5 py-3 shadow-soft border border-beige/50"
       >
-        <p className="text-[10px] section-label leading-none mb-1">Available for</p>
+        <p className="text-[10px] section-label leading-none mb-1">
+          Available for
+        </p>
+
         <p className="text-sm font-medium text-brown whitespace-nowrap">
           Internships & Projects
         </p>
