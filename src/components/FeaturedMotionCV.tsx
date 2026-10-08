@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { FiArrowUpRight } from "react-icons/fi";
 import type { ProjectItem } from "../data/projectsData";
 import { useViewportVideo } from "../hooks/useViewportVideo";
+import { getAssetUrl } from "../utils/getAssetUrl";
 
 interface Props {
   project: ProjectItem;
@@ -35,7 +36,7 @@ export const FeaturedMotionCV: React.FC<Props> = ({ project, onSelectProject }) 
         {!hasError && project.previewVideo ? (
           <video
             ref={videoRef}
-            src={project.previewVideo}
+            src={getAssetUrl(project.previewVideo)}
             poster={project.thumbnail}
             autoPlay
             muted
