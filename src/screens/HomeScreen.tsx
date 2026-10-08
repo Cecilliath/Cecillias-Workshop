@@ -16,7 +16,6 @@ import { FloatingDecorations } from "../components/FloatingDecorations";
 import portrait from "/me.jpeg";
 import { projectsData, filterCategories } from "../data/projectsData";
 import type { FilterCategory, ProjectItem } from "../data/projectsData";
-import { FeaturedMotionCV } from "../components/FeaturedMotionCV";
 import { ProjectCard } from "../components/ProjectCard";
 import { ProjectCategoryFilter } from "../components/ProjectCategoryFilter";
 import { ProjectDetailModal } from "../components/ProjectDetailModal";
@@ -64,14 +63,31 @@ const experience = [
   },
 ];
 
+const DOVE_ID = "1Ms3yyqZUS_WK7SyfJLkkmf7p5RuIoWa-";
+const SDG_ID = "13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn";
+const TRAVELOKA_ID = "1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2";
+const TOP_MOTION_IDS = [DOVE_ID, SDG_ID, TRAVELOKA_ID];
+
 export const HomeScreen: React.FC = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("ALL");
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
-  const featuredMotionCV = projectsData.find((p) => p.isFeatured);
-  const filteredProjects = projectsData.filter((p) => {
+  const doveProject = projectsData.find((p) => p.id === DOVE_ID);
+  const sdgProject = projectsData.find((p) => p.id === SDG_ID);
+  const travelokaProject = projectsData.find((p) => p.id === TRAVELOKA_ID);
+
+  const showTopMotionComposition =
+    (activeFilter === "ALL" || activeFilter === "MOTION VIDEO") &&
+    doveProject &&
+    sdgProject &&
+    travelokaProject;
+
+  const mainGridProjects = projectsData.filter((p) => {
+    if (showTopMotionComposition && TOP_MOTION_IDS.includes(p.id)) {
+      return false;
+    }
     if (activeFilter === "ALL") return true;
     return p.category === activeFilter;
   });
@@ -251,7 +267,7 @@ export const HomeScreen: React.FC = () => {
             </div>
           </section> 
 
-          {/* ─── EDITORIAL PORTFOLIO / PROJECTS ARCHIVE ─── */}
+          {/* ─── EDITORIAL PORTFOLIO / PROJECTS SECTION ─── */}
           <motion.section
             id="projects"
             {...fadeInUp}
@@ -263,29 +279,25 @@ export const HomeScreen: React.FC = () => {
               <ScrollReveal>
                 <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
                   <div>
-                    <p className="section-label mb-2">CURATED ARCHIVE</p>
-                    <div className="flex items-center gap-3 flex-wrap mb-2">
-                      <h2 className="section-title">Selected Works</h2>
-                      <a
-                        href="https://drive.google.com/drive/folders/1WROCCh04L3UvlNd59WW6BZ0HldeFqsb5?usp=drive_link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs font-mono text-brown hover:underline bg-beige/40 px-3 py-1 rounded-full border border-beige/60 transition-colors"
-                      >
-                        <SiGoogledrive className="text-emerald-600 text-sm" />
-                        Drive Archive ↗
-                      </a>
-                    </div>
+                    <p className="font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-charcoal mb-2">
+                      PORTFOLIO
+                    </p>
                     <div className="section-divider" />
                   </div>
-                  <p className="text-charcoal/60 text-xs md:text-sm font-mono max-w-md md:text-right uppercase tracking-wider">
-                    Editorial Portfolio · Motion, Graphic Design, Illustration & Digital Comic
-                  </p>
+                  <a
+                    href="https://drive.google.com/drive/folders/1WROCCh04L3UvlNd59WW6BZ0HldeFqsb5?usp=drive_link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-brown hover:underline bg-beige/40 px-3.5 py-1.5 rounded-full border border-beige/60 transition-colors shrink-0 mb-2"
+                  >
+                    <SiGoogledrive className="text-emerald-600 text-sm" />
+                    Drive Archive ↗
+                  </a>
                 </div>
               </ScrollReveal>
 
-              {/* Minimal Editorial Category Filter Navigation */}
-              <div className="mb-10">
+              {/* Category Filter Navigation */}
+              <div className="mb-10 lg:mb-12">
                 <ProjectCategoryFilter
                   categories={filterCategories}
                   activeCategory={activeFilter}
@@ -293,40 +305,58 @@ export const HomeScreen: React.FC = () => {
                 />
               </div>
 
-              {/* FEATURED MOTION CV (Top Featured Piece for ALL or MOTION filter) */}
-              {(activeFilter === "ALL" || activeFilter === "MOTION") && featuredMotionCV && (
-                <FeaturedMotionCV
-                  project={featuredMotionCV}
-                  onSelectProject={(p) => setSelectedProject(p)}
-                />
+              {/* ─── SPECIAL TOP 2-COLUMN MOTION COMPOSITION (DOVES + SDG | TRAVELOKA) ─── */}
+              {showTopMotionComposition && doveProject && sdgProject && travelokaProject && (
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch mb-12 lg:mb-16">
+                  {/* LEFT COLUMN: Doves (top) + SDG (bottom) */}
+                  <div className="flex flex-col gap-6 lg:gap-8 w-full justify-between">
+                    <ScrollReveal delay={0.04}>
+                      <ProjectCard
+                        project={doveProject}
+                        onSelectProject={(p) => setSelectedProject(p)}
+                        layoutVariant="normal"
+                      />
+                    </ScrollReveal>
+                    <ScrollReveal delay={0.08}>
+                      <ProjectCard
+                        project={sdgProject}
+                        onSelectProject={(p) => setSelectedProject(p)}
+                        layoutVariant="normal"
+                      />
+                    </ScrollReveal>
+                  </div>
+
+                  {/* RIGHT COLUMN: Traveloka spanning entire height */}
+                  <div className="w-full h-full flex flex-col">
+                    <ScrollReveal delay={0.12} className="h-full flex flex-col">
+                      <ProjectCard
+                        project={travelokaProject}
+                        onSelectProject={(p) => setSelectedProject(p)}
+                        layoutVariant="tall"
+                      />
+                    </ScrollReveal>
+                  </div>
+                </div>
               )}
 
-              {/* 2-COLUMN EDITORIAL PROJECT GRID WITH CONTROLLED ASYMMETRY */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-                {filteredProjects
-                  .filter((p) => !(p.isFeatured && (activeFilter === "ALL" || activeFilter === "MOTION")))
-                  .map((project, i) => {
-                    // 80% Structure (1 column) + 20% Controlled Asymmetry (wide 2-column span for specific featured pieces)
-                    const isWideSpan = project.gridSpan === "wide";
-                    const colClass = isWideSpan ? "md:col-span-2" : "md:col-span-1";
-
-                    return (
-                      <div key={project.id} className={`${colClass} w-full`}>
-                        <ScrollReveal delay={i * 0.04}>
-                          <ProjectCard
-                            project={project}
-                            onSelectProject={(p) => setSelectedProject(p)}
-                            layoutVariant={project.gridSpan}
-                          />
-                        </ScrollReveal>
-                      </div>
-                    );
-                  })}
+              {/* ─── SYSTEMATIC 3-COLUMN GRID FOR ALL OTHER PROJECTS ─── */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+                {mainGridProjects.map((project, i) => (
+                  <div key={project.id} className="col-span-1 w-full">
+                    <ScrollReveal delay={i * 0.04}>
+                      <ProjectCard
+                        project={project}
+                        onSelectProject={(p) => setSelectedProject(p)}
+                        layoutVariant="normal"
+                      />
+                    </ScrollReveal>
+                  </div>
+                ))}
               </div>
 
-              {filteredProjects.length === 0 && (
+              {mainGridProjects.length === 0 && !showTopMotionComposition && (
                 <p className="text-sm text-charcoal/45 font-mono text-center py-20 uppercase tracking-wider">
-                  No projects available in this archive category yet.
+                  No projects available in this category yet.
                 </p>
               )}
             </div>

@@ -16,6 +16,7 @@ export const ProjectCard: React.FC<Props> = ({ project, onSelectProject, layoutV
 
   // Aspect ratio mapping preserving full natural proportions
   const getAspectRatioClass = () => {
+    if (layoutVariant === "tall") return "h-full flex-1 min-h-[360px] lg:min-h-0";
     if (project.aspectRatio === "16/9") return "aspect-[16/9]";
     if (project.aspectRatio === "9/16") return "aspect-[9/16] max-h-[460px] mx-auto";
     if (project.aspectRatio === "3/4") return "aspect-[3/4]";
@@ -44,7 +45,7 @@ export const ProjectCard: React.FC<Props> = ({ project, onSelectProject, layoutV
     <motion.article
       whileHover={{ y: -3 }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      className="group cursor-pointer flex flex-col w-full select-none"
+      className={`group cursor-pointer flex flex-col w-full select-none ${layoutVariant === "tall" ? "h-full justify-between" : ""}`}
       onClick={() => onSelectProject(project)}
     >
       {/* Artwork Framing - Clean & Natural */}

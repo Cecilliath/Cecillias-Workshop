@@ -1,4 +1,4 @@
-export type FilterCategory = 'ALL' | 'MOTION' | 'GRAPHIC DESIGN' | 'UI/UX' | 'ILLUSTRATION' | 'DIGITAL' | 'APPAREL';
+export type FilterCategory = 'ALL' | 'MOTION VIDEO' | 'GRAPHIC DESIGN' | 'BRANDING' | 'DIGITAL ILLUSTRATION' | 'WEBTOON';
 
 export type ProjectType = 'motion' | 'poster' | 'character' | 'webtoon' | 'apparel' | 'digital' | 'uiux';
 
@@ -34,19 +34,19 @@ export interface ProjectItem {
 
 export const filterCategories: FilterCategory[] = [
   'ALL',
-  'MOTION',
+  'MOTION VIDEO',
   'GRAPHIC DESIGN',
-  'ILLUSTRATION',
-  'DIGITAL',
-  'APPAREL',
+  'BRANDING',
+  'DIGITAL ILLUSTRATION',
+  'WEBTOON',
 ];
 
 export const projectsData: ProjectItem[] = [
-  // ─── FEATURED MOTION CV ───
+  // ─── MOTION GRAPHICS & VIDEO ───
   {
     id: '1ztLLmKSNEMbyUXDvbPt547zSwMCv4GpB',
     title: 'Motion CV & Visual Reel',
-    category: 'MOTION',
+    category: 'MOTION VIDEO',
     year: '2025',
     type: 'motion',
     thumbnail: 'https://lh3.googleusercontent.com/d/1ztLLmKSNEMbyUXDvbPt547zSwMCv4GpB=w1000',
@@ -61,11 +61,10 @@ export const projectsData: ProjectItem[] = [
     aspectRatio: '16/9',
   },
 
-  // ─── MOTION GRAPHICS ───
   {
     id: '1Ms3yyqZUS_WK7SyfJLkkmf7p5RuIoWa-',
     title: "Dove's Video Campaign Project",
-    category: 'MOTION',
+    category: 'MOTION VIDEO',
     year: '2025',
     type: 'motion',
     thumbnail: 'https://lh3.googleusercontent.com/d/1JppZbdEG95whsO9-rASfSnij0qbVTGvl=w1000',
@@ -81,7 +80,7 @@ export const projectsData: ProjectItem[] = [
   {
     id: '13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn',
     title: 'SDGs Motion Effect',
-    category: 'MOTION',
+    category: 'MOTION VIDEO',
     year: '2025',
     type: 'motion',
     thumbnail: 'https://lh3.googleusercontent.com/d/13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn=w1000',
@@ -97,7 +96,7 @@ export const projectsData: ProjectItem[] = [
   {
     id: '1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2',
     title: 'Traveloka Commercial Ad',
-    category: 'MOTION',
+    category: 'MOTION VIDEO',
     year: '2024',
     type: 'motion',
     thumbnail: 'https://lh3.googleusercontent.com/d/1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2=w1000',
@@ -111,11 +110,11 @@ export const projectsData: ProjectItem[] = [
     aspectRatio: '9/16',
   },
 
-  // ─── WEBTOON DIGITAL COMIC (SINGLE ITEM IN MAIN GALLERY) ───
+  // ─── WEBTOON DIGITAL COMIC ───
   {
     id: 'webtoon-harta-arwah-penuntun',
     title: 'Harta Arwah Penuntun',
-    category: 'DIGITAL',
+    category: 'WEBTOON',
     year: '2024',
     type: 'webtoon',
     thumbnail: '/webtoon/ep1-scene1.jpg',
@@ -179,7 +178,7 @@ export const projectsData: ProjectItem[] = [
     ],
   },
 
-  // ─── GRAPHIC DESIGN & POSTERS ───
+  // ─── GRAPHIC DESIGN ───
   {
     id: '1Vtp-H-gGiUujHlt6AV03nFRimaTKbWJz',
     title: 'Diversity Is Our Strength',
@@ -223,20 +222,6 @@ export const projectsData: ProjectItem[] = [
     aspectRatio: '3/4',
   },
   {
-    id: '18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa',
-    title: 'Brand Identity & Logo Construction',
-    category: 'GRAPHIC DESIGN',
-    year: '2024',
-    type: 'poster',
-    thumbnail: 'https://lh3.googleusercontent.com/d/18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa=w1000',
-    description: 'A comprehensive logo mark and visual identity exploration focusing on clean geometry, memorable mark construction, and versatile scaling.',
-    role: 'Logo & Identity Designer',
-    tools: ['Illustrator'],
-    driveUrl: 'https://drive.google.com/file/d/18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa/view?usp=sharing',
-    gridSpan: 'normal',
-    aspectRatio: '3/4',
-  },
-  {
     id: '1NZg260mA08QAmWVYTKYOLtVZU1sfN7k2',
     title: 'Event Exhibition Banner Visual',
     category: 'GRAPHIC DESIGN',
@@ -251,11 +236,41 @@ export const projectsData: ProjectItem[] = [
     aspectRatio: '16/9',
   },
 
-  // ─── ILLUSTRATION ───
+  // ─── BRANDING ───
+  {
+    id: '18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa',
+    title: 'Brand Identity & Logo Construction',
+    category: 'BRANDING',
+    year: '2024',
+    type: 'poster',
+    thumbnail: 'https://lh3.googleusercontent.com/d/18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa=w1000',
+    description: 'A comprehensive logo mark and visual identity exploration focusing on clean geometry, memorable mark construction, and versatile scaling.',
+    role: 'Logo & Identity Designer',
+    tools: ['Illustrator'],
+    driveUrl: 'https://drive.google.com/file/d/18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '3/4',
+  },
+  {
+    id: '1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY',
+    title: 'T-Shirt Graphic & Apparel Mockup',
+    category: 'BRANDING',
+    year: '2025',
+    type: 'apparel',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY=w1000',
+    description: 'Custom streetwear graphic apparel print design presented on photorealistic garment mockups for production and retail presentation.',
+    role: 'Apparel & Graphic Designer',
+    tools: ['Illustrator', 'Photoshop'],
+    driveUrl: 'https://drive.google.com/file/d/1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '4/5',
+  },
+
+  // ─── DIGITAL ILLUSTRATION ───
   {
     id: '18pYlW092tE7JPDU1ghytlYRwB6K8avRl',
     title: 'Crebo Mascot Character Design',
-    category: 'ILLUSTRATION',
+    category: 'DIGITAL ILLUSTRATION',
     year: '2025',
     type: 'character',
     thumbnail: 'https://lh3.googleusercontent.com/d/18pYlW092tE7JPDU1ghytlYRwB6K8avRl=w1000',
@@ -272,7 +287,7 @@ export const projectsData: ProjectItem[] = [
   {
     id: '11sPdexslEfpt9gTDQSS8VTbDdNH_M2xp',
     title: 'Lia & Crebo Character Model Sheet',
-    category: 'ILLUSTRATION',
+    category: 'DIGITAL ILLUSTRATION',
     year: '2024',
     type: 'character',
     thumbnail: 'https://lh3.googleusercontent.com/d/11sPdexslEfpt9gTDQSS8VTbDdNH_M2xp=w1000',
@@ -286,7 +301,7 @@ export const projectsData: ProjectItem[] = [
   {
     id: '1zst67iA6JG0MWOg1KXSPR3iHrf8P4aRp',
     title: 'Packaging Illustration Design',
-    category: 'ILLUSTRATION',
+    category: 'DIGITAL ILLUSTRATION',
     year: '2025',
     type: 'digital',
     thumbnail: 'https://lh3.googleusercontent.com/d/1zst67iA6JG0MWOg1KXSPR3iHrf8P4aRp=w1000',
@@ -300,7 +315,7 @@ export const projectsData: ProjectItem[] = [
   {
     id: '1ABPX1HfH_1N_MJlA1Mmisi4z7QQwasWY',
     title: 'Digital Concept Art Series',
-    category: 'ILLUSTRATION',
+    category: 'DIGITAL ILLUSTRATION',
     year: '2024',
     type: 'digital',
     thumbnail: 'https://lh3.googleusercontent.com/d/1ABPX1HfH_1N_MJlA1Mmisi4z7QQwasWY=w1000',
@@ -316,21 +331,5 @@ export const projectsData: ProjectItem[] = [
       'https://lh3.googleusercontent.com/d/1ZMO2KQZwBfvgbMGFjVq314mvxJ8PY95z=w1000',
       'https://lh3.googleusercontent.com/d/1nASDEnovk3lwSV7AvYOKSi3yH_dzVm6h=w1000',
     ],
-  },
-
-  // ─── APPAREL DESIGN ───
-  {
-    id: '1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY',
-    title: 'T-Shirt Graphic & Apparel Mockup',
-    category: 'APPAREL',
-    year: '2025',
-    type: 'apparel',
-    thumbnail: 'https://lh3.googleusercontent.com/d/1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY=w1000',
-    description: 'Custom streetwear graphic apparel print design presented on photorealistic garment mockups for production and retail presentation.',
-    role: 'Apparel & Graphic Designer',
-    tools: ['Illustrator', 'Photoshop'],
-    driveUrl: 'https://drive.google.com/file/d/1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY/view?usp=sharing',
-    gridSpan: 'normal',
-    aspectRatio: '4/5',
   },
 ];
