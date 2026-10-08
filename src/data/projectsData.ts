@@ -236,7 +236,7 @@ export const projectsData: ProjectItem[] = [
   {
     id: '18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa',
     title: 'Poster Advertisement',
-    category: 'Graphic Design',
+    category: 'GRAPHIC DESIGN',
     year: '2026',
     type: 'poster',
     thumbnail: 'https://lh3.googleusercontent.com/d/18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa=w1000',
