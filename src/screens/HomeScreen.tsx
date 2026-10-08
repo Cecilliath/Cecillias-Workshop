@@ -15,10 +15,12 @@ import { FloatingDecorations } from "../components/FloatingDecorations";
 
 import portrait from "/me.jpeg";
 import { projectsData, filterCategories } from "../data/projectsData";
-import type { ProjectCategory, ProjectItem } from "../data/projectsData";
+import type { FilterCategory, ProjectItem } from "../data/projectsData";
 import { FeaturedMotionCV } from "../components/FeaturedMotionCV";
 import { ProjectCard } from "../components/ProjectCard";
+import { ProjectCategoryFilter } from "../components/ProjectCategoryFilter";
 import { ProjectDetailModal } from "../components/ProjectDetailModal";
+import { WebtoonDetailView } from "../components/WebtoonDetailView";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 32 },
@@ -65,7 +67,7 @@ const experience = [
 export const HomeScreen: React.FC = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
-  const [activeFilter, setActiveFilter] = useState<ProjectCategory>("ALL");
+  const [activeFilter, setActiveFilter] = useState<FilterCategory>("ALL");
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
   const featuredMotionCV = projectsData.find((p) => p.isFeatured);
@@ -249,62 +251,49 @@ export const HomeScreen: React.FC = () => {
             </div>
           </section> 
 
-          {/* ─── PROJECTS ─── */}
+          {/* ─── EDITORIAL PORTFOLIO / PROJECTS ARCHIVE ─── */}
           <motion.section
             id="projects"
             {...fadeInUp}
-            className="relative px-5 md:px-10 py-20 md:py-28 bg-soft-white overflow-hidden"
+            className="relative px-6 md:px-12 py-20 md:py-28 bg-soft-white overflow-hidden"
           >
             <FloatingDecorations variant="warm" />
 
             <div className="max-w-6xl mx-auto relative z-10">
               <ScrollReveal>
-                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
                   <div>
-                    <p className="section-label mb-2">SELECTED WORKS</p>
+                    <p className="section-label mb-2">CURATED ARCHIVE</p>
                     <div className="flex items-center gap-3 flex-wrap mb-2">
-                      <h2 className="section-title">Projects & Visual Work</h2>
+                      <h2 className="section-title">Selected Works</h2>
                       <a
                         href="https://drive.google.com/drive/folders/1WROCCh04L3UvlNd59WW6BZ0HldeFqsb5?usp=drive_link"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs text-brown font-medium hover:underline bg-beige/40 px-3 py-1.5 rounded-full border border-beige/60 transition-colors"
+                        className="inline-flex items-center gap-1.5 text-xs font-mono text-brown hover:underline bg-beige/40 px-3 py-1 rounded-full border border-beige/60 transition-colors"
                       >
                         <SiGoogledrive className="text-emerald-600 text-sm" />
-                        Google Drive Folder
-                        <FiArrowUpRight className="text-xs" />
+                        Drive Archive ↗
                       </a>
                     </div>
                     <div className="section-divider" />
                   </div>
-                  <p className="text-charcoal/60 text-sm md:text-base max-w-md md:text-right">
-                    A collection of selected works across motion, graphic design, illustration, and digital media.
+                  <p className="text-charcoal/60 text-xs md:text-sm font-mono max-w-md md:text-right uppercase tracking-wider">
+                    Editorial Portfolio · Motion, Graphic Design, Illustration & Digital Comic
                   </p>
                 </div>
               </ScrollReveal>
 
-              {/* Category Filter Pills */}
-              <div className="flex flex-wrap items-center gap-2 md:gap-2.5 mb-12">
-                {filterCategories.map((category) => {
-                  const isActive = activeFilter === category;
-                  return (
-                    <button
-                      key={category}
-                      type="button"
-                      onClick={() => setActiveFilter(category)}
-                      className={`rounded-full px-4 py-2 text-xs md:text-sm font-medium transition-all ${
-                        isActive
-                          ? "bg-charcoal text-cream shadow-sm"
-                          : "bg-cream text-charcoal/70 border border-beige/80 hover:border-charcoal/30 hover:bg-cream/80"
-                      }`}
-                    >
-                      {category}
-                    </button>
-                  );
-                })}
+              {/* Minimal Editorial Category Filter Navigation */}
+              <div className="mb-10">
+                <ProjectCategoryFilter
+                  categories={filterCategories}
+                  activeCategory={activeFilter}
+                  onSelectCategory={(category) => setActiveFilter(category)}
+                />
               </div>
 
-              {/* FEATURED MOTION CV (Shown at top for ALL or MOTION filter) */}
+              {/* FEATURED MOTION CV (Top Featured Piece for ALL or MOTION filter) */}
               {(activeFilter === "ALL" || activeFilter === "MOTION") && featuredMotionCV && (
                 <FeaturedMotionCV
                   project={featuredMotionCV}
@@ -312,35 +301,46 @@ export const HomeScreen: React.FC = () => {
                 />
               )}
 
-              {/* EDITORIAL PROJECT GRID */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-start">
+              {/* 2-COLUMN EDITORIAL PROJECT GRID WITH CONTROLLED ASYMMETRY */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
                 {filteredProjects
                   .filter((p) => !(p.isFeatured && (activeFilter === "ALL" || activeFilter === "MOTION")))
-                  .map((project, i) => (
-                    <ScrollReveal
-                      key={project.id}
-                      delay={i * 0.06}
-                      direction={i % 2 === 0 ? "up" : "scale"}
-                    >
-                      <ProjectCard
-                        project={project}
-                        onSelectProject={(p) => setSelectedProject(p)}
-                      />
-                    </ScrollReveal>
-                  ))}
+                  .map((project, i) => {
+                    // 80% Structure (1 column) + 20% Controlled Asymmetry (wide 2-column span for specific featured pieces)
+                    const isWideSpan = project.gridSpan === "wide";
+                    const colClass = isWideSpan ? "md:col-span-2" : "md:col-span-1";
+
+                    return (
+                      <div key={project.id} className={`${colClass} w-full`}>
+                        <ScrollReveal delay={i * 0.04}>
+                          <ProjectCard
+                            project={project}
+                            onSelectProject={(p) => setSelectedProject(p)}
+                            layoutVariant={project.gridSpan}
+                          />
+                        </ScrollReveal>
+                      </div>
+                    );
+                  })}
               </div>
 
               {filteredProjects.length === 0 && (
-                <p className="text-sm text-charcoal/45 text-center py-16">
-                  No projects available in this category yet.
+                <p className="text-sm text-charcoal/45 font-mono text-center py-20 uppercase tracking-wider">
+                  No projects available in this archive category yet.
                 </p>
               )}
             </div>
           </motion.section>
 
-          {/* PROJECT DETAIL MODAL */}
+          {/* WEBTOON DEDICATED READER VIEW */}
+          <WebtoonDetailView
+            project={selectedProject?.type === "webtoon" ? selectedProject : null}
+            onClose={() => setSelectedProject(null)}
+          />
+
+          {/* STANDARD PROJECT DETAIL MODAL */}
           <ProjectDetailModal
-            project={selectedProject}
+            project={selectedProject?.type !== "webtoon" ? selectedProject : null}
             onClose={() => setSelectedProject(null)}
           />
 

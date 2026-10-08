@@ -20,7 +20,12 @@ export interface ArtGalleryItem {
 }
 
 export const gdriveCategories = [
+  "2D Animation",
+  "Designs",
+  "Digital Illustration",
+  "Motion Effects",
   "Posters",
+  "Webtoon Comic",
   "Random"
 ] as const;
 
@@ -34,6 +39,150 @@ export const projectCategories = [
 export type ProjectCategory = (typeof projectCategories)[number];
 
 export const gdriveProjects: ArtGalleryItem[] = [
+  {
+    "id": "1Ms3yyqZUS_WK7SyfJLkkmf7p5RuIoWa-",
+    "name": "Dove's Video Campaign Project",
+    "image": "https://lh3.googleusercontent.com/d/1Ms3yyqZUS_WK7SyfJLkkmf7p5RuIoWa-=w1000",
+    "category": "2D Animation",
+    "driveUrl": "https://drive.google.com/file/d/1Ms3yyqZUS_WK7SyfJLkkmf7p5RuIoWa-/view?usp=sharing",
+    "mimeType": "video/mp4",
+    "isVideo": true
+  },
+  {
+    "id": "1JppZbdEG95whsO9-rASfSnij0qbVTGvl",
+    "name": "Thumbnail Video For Dove's Video Campaign",
+    "image": "https://lh3.googleusercontent.com/d/1JppZbdEG95whsO9-rASfSnij0qbVTGvl=w1000",
+    "category": "2D Animation",
+    "driveUrl": "https://drive.google.com/file/d/1JppZbdEG95whsO9-rASfSnij0qbVTGvl/view?usp=sharing",
+    "mimeType": "image/jpeg",
+    "isVideo": false
+  },
+  {
+    "id": "18pYlW092tE7JPDU1ghytlYRwB6K8avRl",
+    "name": "Character Design",
+    "image": "https://lh3.googleusercontent.com/d/18pYlW092tE7JPDU1ghytlYRwB6K8avRl=w1000",
+    "category": "Designs",
+    "driveUrl": "https://drive.google.com/file/d/18pYlW092tE7JPDU1ghytlYRwB6K8avRl/view?usp=sharing",
+    "mimeType": "image/png",
+    "isVideo": false
+  },
+  {
+    "id": "11sPdexslEfpt9gTDQSS8VTbDdNH_M2xp",
+    "name": "Character Design",
+    "image": "https://lh3.googleusercontent.com/d/11sPdexslEfpt9gTDQSS8VTbDdNH_M2xp=w1000",
+    "category": "Designs",
+    "driveUrl": "https://drive.google.com/file/d/11sPdexslEfpt9gTDQSS8VTbDdNH_M2xp/view?usp=sharing",
+    "mimeType": "image/png",
+    "isVideo": false
+  },
+  {
+    "id": "1fku6BkXNn8XGLJRa2lArxGXhvowm4gvU",
+    "name": "Packaging Illustration Design",
+    "image": "https://lh3.googleusercontent.com/d/1fku6BkXNn8XGLJRa2lArxGXhvowm4gvU=w1000",
+    "category": "Designs",
+    "driveUrl": "https://drive.google.com/file/d/1fku6BkXNn8XGLJRa2lArxGXhvowm4gvU/view?usp=sharing",
+    "mimeType": "image/jpeg",
+    "isVideo": false
+  },
+  {
+    "id": "1zst67iA6JG0MWOg1KXSPR3iHrf8P4aRp",
+    "name": "Packaging Illustration Design",
+    "image": "https://lh3.googleusercontent.com/d/1zst67iA6JG0MWOg1KXSPR3iHrf8P4aRp=w1000",
+    "category": "Designs",
+    "driveUrl": "https://drive.google.com/file/d/1zst67iA6JG0MWOg1KXSPR3iHrf8P4aRp/view?usp=sharing",
+    "mimeType": "image/png",
+    "isVideo": false
+  },
+  {
+    "id": "1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY",
+    "name": "T Shirt Design",
+    "image": "https://lh3.googleusercontent.com/d/1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY=w1000",
+    "category": "Designs",
+    "driveUrl": "https://drive.google.com/file/d/1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY/view?usp=sharing",
+    "mimeType": "image/png",
+    "isVideo": false
+  },
+  {
+    "id": "1ABPX1HfH_1N_MJlA1Mmisi4z7QQwasWY",
+    "name": "IMG 8083",
+    "image": "https://lh3.googleusercontent.com/d/1ABPX1HfH_1N_MJlA1Mmisi4z7QQwasWY=w1000",
+    "category": "Digital Illustration",
+    "driveUrl": "https://drive.google.com/file/d/1ABPX1HfH_1N_MJlA1Mmisi4z7QQwasWY/view?usp=sharing",
+    "mimeType": "image/jpeg",
+    "isVideo": false
+  },
+  {
+    "id": "1ENMCyWYMDLae9Lo7XhAbYsCEjlb24sJD",
+    "name": "IMG 8084",
+    "image": "https://lh3.googleusercontent.com/d/1ENMCyWYMDLae9Lo7XhAbYsCEjlb24sJD=w1000",
+    "category": "Digital Illustration",
+    "driveUrl": "https://drive.google.com/file/d/1ENMCyWYMDLae9Lo7XhAbYsCEjlb24sJD/view?usp=sharing",
+    "mimeType": "image/jpeg",
+    "isVideo": false
+  },
+  {
+    "id": "1OVDt4GBSaQmhmULF7CjMPDi_UfBkmu_v",
+    "name": "IMG 8085",
+    "image": "https://lh3.googleusercontent.com/d/1OVDt4GBSaQmhmULF7CjMPDi_UfBkmu_v=w1000",
+    "category": "Digital Illustration",
+    "driveUrl": "https://drive.google.com/file/d/1OVDt4GBSaQmhmULF7CjMPDi_UfBkmu_v/view?usp=sharing",
+    "mimeType": "image/jpeg",
+    "isVideo": false
+  },
+  {
+    "id": "1ZMO2KQZwBfvgbMGFjVq314mvxJ8PY95z",
+    "name": "IMG 8086",
+    "image": "https://lh3.googleusercontent.com/d/1ZMO2KQZwBfvgbMGFjVq314mvxJ8PY95z=w1000",
+    "category": "Digital Illustration",
+    "driveUrl": "https://drive.google.com/file/d/1ZMO2KQZwBfvgbMGFjVq314mvxJ8PY95z/view?usp=sharing",
+    "mimeType": "image/jpeg",
+    "isVideo": false
+  },
+  {
+    "id": "1nASDEnovk3lwSV7AvYOKSi3yH_dzVm6h",
+    "name": "IMG 8087",
+    "image": "https://lh3.googleusercontent.com/d/1nASDEnovk3lwSV7AvYOKSi3yH_dzVm6h=w1000",
+    "category": "Digital Illustration",
+    "driveUrl": "https://drive.google.com/file/d/1nASDEnovk3lwSV7AvYOKSi3yH_dzVm6h/view?usp=sharing",
+    "mimeType": "image/jpeg",
+    "isVideo": false
+  },
+  {
+    "id": "1TzLgI-HmV4Jr8AbabiuAcER8pL6lmCun",
+    "name": "IMG 8089",
+    "image": "https://lh3.googleusercontent.com/d/1TzLgI-HmV4Jr8AbabiuAcER8pL6lmCun=w1000",
+    "category": "Digital Illustration",
+    "driveUrl": "https://drive.google.com/file/d/1TzLgI-HmV4Jr8AbabiuAcER8pL6lmCun/view?usp=sharing",
+    "mimeType": "image/jpeg",
+    "isVideo": false
+  },
+  {
+    "id": "1ztLLmKSNEMbyUXDvbPt547zSwMCv4GpB",
+    "name": "Introduction Motion CV",
+    "image": "https://lh3.googleusercontent.com/d/1ztLLmKSNEMbyUXDvbPt547zSwMCv4GpB=w1000",
+    "category": "Motion Effects",
+    "driveUrl": "https://drive.google.com/file/d/1ztLLmKSNEMbyUXDvbPt547zSwMCv4GpB/view?usp=sharing",
+    "mimeType": "video/mp4",
+    "isVideo": true
+  },
+  {
+    "id": "13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn",
+    "name": "SDGs Motion Effect",
+    "image": "https://lh3.googleusercontent.com/d/13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn=w1000",
+    "category": "Motion Effects",
+    "driveUrl": "https://drive.google.com/file/d/13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn/view?usp=sharing",
+    "mimeType": "video/mp4",
+    "isVideo": true
+  },
+  {
+    "id": "1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2",
+    "name": "Traveloka Advertisement",
+    "image": "https://lh3.googleusercontent.com/d/1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2=w1000",
+    "category": "Motion Effects",
+    "driveUrl": "https://drive.google.com/file/d/1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2/view?usp=sharing",
+    "mimeType": "video/mp4",
+    "isVideo": true
+  },
   {
     "id": "1NZg260mA08QAmWVYTKYOLtVZU1sfN7k2",
     "name": "Banner",
@@ -80,211 +229,139 @@ export const gdriveProjects: ArtGalleryItem[] = [
     "isVideo": false
   },
   {
-    "id": "1xtmeL3CjB1XnxoXLu3hP0feaFTE5ML6G",
-    "name": "Photo 2025-03-28",
-    "image": "https://lh3.googleusercontent.com/d/1xtmeL3CjB1XnxoXLu3hP0feaFTE5ML6G=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1xtmeL3CjB1XnxoXLu3hP0feaFTE5ML6G/view?usp=sharing",
-    "mimeType": "image/heif",
-    "isVideo": false
-  },
-  {
-    "id": "1RCR8zEwO7yAL-0XSAdY0guvkjXbxOgj7",
-    "name": "Photo 2025-03-28",
-    "image": "https://lh3.googleusercontent.com/d/1RCR8zEwO7yAL-0XSAdY0guvkjXbxOgj7=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1RCR8zEwO7yAL-0XSAdY0guvkjXbxOgj7/view?usp=sharing",
-    "mimeType": "image/heif",
-    "isVideo": false
-  },
-  {
-    "id": "1bJnDvuGHx_I5LKvccAUSd_DpIce9RFMT",
-    "name": "Photo 2025-03-28",
-    "image": "https://lh3.googleusercontent.com/d/1bJnDvuGHx_I5LKvccAUSd_DpIce9RFMT=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1bJnDvuGHx_I5LKvccAUSd_DpIce9RFMT/view?usp=sharing",
-    "mimeType": "image/heif",
-    "isVideo": false
-  },
-  {
-    "id": "1DVoJFVqNJNHuWktA-aAEFi9h-4tLbwda",
-    "name": "Photography Shot 01322",
-    "image": "https://lh3.googleusercontent.com/d/1DVoJFVqNJNHuWktA-aAEFi9h-4tLbwda=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1DVoJFVqNJNHuWktA-aAEFi9h-4tLbwda/view?usp=sharing",
+    "id": "1ZOP45POC4MBJJii-ZLqcHmUjROmD9eWU",
+    "name": "Episode 1 Scene 1",
+    "image": "https://lh3.googleusercontent.com/d/1ZOP45POC4MBJJii-ZLqcHmUjROmD9eWU=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1ZOP45POC4MBJJii-ZLqcHmUjROmD9eWU/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "149IJO84puCjr-ILMfr657nFxfO7RqaI1",
-    "name": "Photography Shot 01370",
-    "image": "https://lh3.googleusercontent.com/d/149IJO84puCjr-ILMfr657nFxfO7RqaI1=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/149IJO84puCjr-ILMfr657nFxfO7RqaI1/view?usp=sharing",
+    "id": "17c7kr7anDjNeWNgabCOFjASifO_7vJsj",
+    "name": "Episode 1 Scene 2",
+    "image": "https://lh3.googleusercontent.com/d/17c7kr7anDjNeWNgabCOFjASifO_7vJsj=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/17c7kr7anDjNeWNgabCOFjASifO_7vJsj/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "1wxDbdwn_Ge3gud17Yw164warVDwhVWUV",
-    "name": "Photography Shot 02004",
-    "image": "https://lh3.googleusercontent.com/d/1wxDbdwn_Ge3gud17Yw164warVDwhVWUV=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1wxDbdwn_Ge3gud17Yw164warVDwhVWUV/view?usp=sharing",
+    "id": "1qaj5Md0eO8EduRgvNVCseogQ6coSGlK7",
+    "name": "Episode 1 Scene 3",
+    "image": "https://lh3.googleusercontent.com/d/1qaj5Md0eO8EduRgvNVCseogQ6coSGlK7=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1qaj5Md0eO8EduRgvNVCseogQ6coSGlK7/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "1duEkplSgt2aiSaICa5-f0vXvSvbXl2Ma",
-    "name": "Foto Bersama Dosen",
-    "image": "https://lh3.googleusercontent.com/d/1duEkplSgt2aiSaICa5-f0vXvSvbXl2Ma=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1duEkplSgt2aiSaICa5-f0vXvSvbXl2Ma/view?usp=sharing",
+    "id": "1_XX-zU8ZDyRxNI2w-5Qz2Ic4XdYSMN_h",
+    "name": "Episode 1 Scene 4",
+    "image": "https://lh3.googleusercontent.com/d/1_XX-zU8ZDyRxNI2w-5Qz2Ic4XdYSMN_h=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1_XX-zU8ZDyRxNI2w-5Qz2Ic4XdYSMN_h/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "1-HzE6la-lQomtbdVKZzPNIYO229Z0CrN",
-    "name": "Foto Panit",
-    "image": "https://lh3.googleusercontent.com/d/1-HzE6la-lQomtbdVKZzPNIYO229Z0CrN=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1-HzE6la-lQomtbdVKZzPNIYO229Z0CrN/view?usp=sharing",
+    "id": "1jO54CEyEiGAg7S5KCeS_vXk6uzc4qLMV",
+    "name": "Episode 1 Scene 5",
+    "image": "https://lh3.googleusercontent.com/d/1jO54CEyEiGAg7S5KCeS_vXk6uzc4qLMV=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1jO54CEyEiGAg7S5KCeS_vXk6uzc4qLMV/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "1bdngI1eO9piOHtI5V3dWp0H-KfH0ToqC",
-    "name": "IMG 0642",
-    "image": "https://lh3.googleusercontent.com/d/1bdngI1eO9piOHtI5V3dWp0H-KfH0ToqC=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1bdngI1eO9piOHtI5V3dWp0H-KfH0ToqC/view?usp=sharing",
+    "id": "1kjbG8_XLX1WjpE7HZx6Ri5CaOtoTORVM",
+    "name": "Episode 1 Scene 6",
+    "image": "https://lh3.googleusercontent.com/d/1kjbG8_XLX1WjpE7HZx6Ri5CaOtoTORVM=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1kjbG8_XLX1WjpE7HZx6Ri5CaOtoTORVM/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "1tDyRIZ8oZQ7uEso3jTmf8KtBUUS6rvdA",
-    "name": "IMG 4494",
-    "image": "https://lh3.googleusercontent.com/d/1tDyRIZ8oZQ7uEso3jTmf8KtBUUS6rvdA=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1tDyRIZ8oZQ7uEso3jTmf8KtBUUS6rvdA/view?usp=sharing",
+    "id": "1Kp0wzk5Bs_XFRWVZGe6Kj5pOGqt0nyT1",
+    "name": "Episode 1 Scene 7",
+    "image": "https://lh3.googleusercontent.com/d/1Kp0wzk5Bs_XFRWVZGe6Kj5pOGqt0nyT1=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1Kp0wzk5Bs_XFRWVZGe6Kj5pOGqt0nyT1/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "1hPoXGsDBtbC-OoMbtvdjhch0977O0E6q",
-    "name": "Event Moment (0060)",
-    "image": "https://lh3.googleusercontent.com/d/1hPoXGsDBtbC-OoMbtvdjhch0977O0E6q=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1hPoXGsDBtbC-OoMbtvdjhch0977O0E6q/view?usp=sharing",
+    "id": "1LSpc7id1R5oK_GVSTOASlJA2doq7KvFA",
+    "name": "Episode 2 Scene 1",
+    "image": "https://lh3.googleusercontent.com/d/1LSpc7id1R5oK_GVSTOASlJA2doq7KvFA=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1LSpc7id1R5oK_GVSTOASlJA2doq7KvFA/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "1UgrmnJpWaLuYNc10PtLocDQYuszTgqum",
-    "name": "Event Moment (0030)",
-    "image": "https://lh3.googleusercontent.com/d/1UgrmnJpWaLuYNc10PtLocDQYuszTgqum=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1UgrmnJpWaLuYNc10PtLocDQYuszTgqum/view?usp=sharing",
+    "id": "1ZdQDXqUkB5d3JTQlM-qK40M_vwa_z3ew",
+    "name": "Episode 2 Scene 2",
+    "image": "https://lh3.googleusercontent.com/d/1ZdQDXqUkB5d3JTQlM-qK40M_vwa_z3ew=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1ZdQDXqUkB5d3JTQlM-qK40M_vwa_z3ew/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "1GM61r7oMGeQ6KiyR6vpiLyWOHjjFsQ85",
-    "name": "Event Moment (0031)",
-    "image": "https://lh3.googleusercontent.com/d/1GM61r7oMGeQ6KiyR6vpiLyWOHjjFsQ85=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1GM61r7oMGeQ6KiyR6vpiLyWOHjjFsQ85/view?usp=sharing",
+    "id": "1VTuj2tRMobnb9byLd2Ks0N21cjJVsE57",
+    "name": "Episode 2 Scene 3",
+    "image": "https://lh3.googleusercontent.com/d/1VTuj2tRMobnb9byLd2Ks0N21cjJVsE57=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1VTuj2tRMobnb9byLd2Ks0N21cjJVsE57/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "13UOVYnQ2dPqdfc2XOTHLlxcGBR2lnHpO",
-    "name": "Event Moment (0032)",
-    "image": "https://lh3.googleusercontent.com/d/13UOVYnQ2dPqdfc2XOTHLlxcGBR2lnHpO=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/13UOVYnQ2dPqdfc2XOTHLlxcGBR2lnHpO/view?usp=sharing",
+    "id": "1hbjg5bFVGA8Hz6hSB8_MnWutHeRCatDr",
+    "name": "Episode 2 Scene 4",
+    "image": "https://lh3.googleusercontent.com/d/1hbjg5bFVGA8Hz6hSB8_MnWutHeRCatDr=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1hbjg5bFVGA8Hz6hSB8_MnWutHeRCatDr/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "1F4KuTBTkvmMt-kaXF3lf0G8WSUO6yzAz",
-    "name": "Event Moment (0043)",
-    "image": "https://lh3.googleusercontent.com/d/1F4KuTBTkvmMt-kaXF3lf0G8WSUO6yzAz=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1F4KuTBTkvmMt-kaXF3lf0G8WSUO6yzAz/view?usp=sharing",
+    "id": "1tIT09ocJhphxi2Kswq2jvDewv75ApcQ9",
+    "name": "Episode 2 Scene 5",
+    "image": "https://lh3.googleusercontent.com/d/1tIT09ocJhphxi2Kswq2jvDewv75ApcQ9=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1tIT09ocJhphxi2Kswq2jvDewv75ApcQ9/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "1bLG78auA6LuTI6axIkKJhMcestpJZQXg",
-    "name": "Event Moment (0065)",
-    "image": "https://lh3.googleusercontent.com/d/1bLG78auA6LuTI6axIkKJhMcestpJZQXg=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1bLG78auA6LuTI6axIkKJhMcestpJZQXg/view?usp=sharing",
+    "id": "1_3Rlz8Wou8fOV-pmzU14Qd1D-z8JaM9P",
+    "name": "Episode 2 Scene 6",
+    "image": "https://lh3.googleusercontent.com/d/1_3Rlz8Wou8fOV-pmzU14Qd1D-z8JaM9P=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1_3Rlz8Wou8fOV-pmzU14Qd1D-z8JaM9P/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "1YHTEDk1uI9D6dZBng5dvJxziT0SH5KXi",
-    "name": "Event Moment (0070)",
-    "image": "https://lh3.googleusercontent.com/d/1YHTEDk1uI9D6dZBng5dvJxziT0SH5KXi=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1YHTEDk1uI9D6dZBng5dvJxziT0SH5KXi/view?usp=sharing",
+    "id": "1_e0ErEJrhNQ73CJmqxyc3zPiUwhTda21",
+    "name": "Episode 2 Scene 7",
+    "image": "https://lh3.googleusercontent.com/d/1_e0ErEJrhNQ73CJmqxyc3zPiUwhTda21=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1_e0ErEJrhNQ73CJmqxyc3zPiUwhTda21/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
   },
   {
-    "id": "1TnqWNEfHB13WRcxfQTHWCUf7Lj_sym2E",
-    "name": "Event Moment (0136)",
-    "image": "https://lh3.googleusercontent.com/d/1TnqWNEfHB13WRcxfQTHWCUf7Lj_sym2E=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1TnqWNEfHB13WRcxfQTHWCUf7Lj_sym2E/view?usp=sharing",
+    "id": "1pYvLoM2mdxl03jTJjqx6NhdSgxKzxcow",
+    "name": "Episode 3 Scene 1",
+    "image": "https://lh3.googleusercontent.com/d/1pYvLoM2mdxl03jTJjqx6NhdSgxKzxcow=w1000",
+    "category": "Webtoon Comic",
+    "driveUrl": "https://drive.google.com/file/d/1pYvLoM2mdxl03jTJjqx6NhdSgxKzxcow/view?usp=sharing",
     "mimeType": "image/jpeg",
     "isVideo": false
-  },
-  {
-    "id": "1k4MgFo8Vw643iqb694PnuqlZqHjULPL-",
-    "name": "Event Moment (0141)",
-    "image": "https://lh3.googleusercontent.com/d/1k4MgFo8Vw643iqb694PnuqlZqHjULPL-=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1k4MgFo8Vw643iqb694PnuqlZqHjULPL-/view?usp=sharing",
-    "mimeType": "image/jpeg",
-    "isVideo": false
-  },
-  {
-    "id": "1y8HY8cD2upL80joX72yVFnC5Fz0Qu9Ap",
-    "name": "Event Moment (0162)",
-    "image": "https://lh3.googleusercontent.com/d/1y8HY8cD2upL80joX72yVFnC5Fz0Qu9Ap=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1y8HY8cD2upL80joX72yVFnC5Fz0Qu9Ap/view?usp=sharing",
-    "mimeType": "image/jpeg",
-    "isVideo": false
-  },
-  {
-    "id": "1u_UH05VnIuKBDDddM2FQz7s4WlzS2l4G",
-    "name": "Event Moment (0199)",
-    "image": "https://lh3.googleusercontent.com/d/1u_UH05VnIuKBDDddM2FQz7s4WlzS2l4G=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1u_UH05VnIuKBDDddM2FQz7s4WlzS2l4G/view?usp=sharing",
-    "mimeType": "image/jpeg",
-    "isVideo": false
-  },
-  {
-    "id": "13jO-2xx6L4cPc0c1eOv5WrthfEeTIr79",
-    "name": "Event Moment (0223)",
-    "image": "https://lh3.googleusercontent.com/d/13jO-2xx6L4cPc0c1eOv5WrthfEeTIr79=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/13jO-2xx6L4cPc0c1eOv5WrthfEeTIr79/view?usp=sharing",
-    "mimeType": "image/jpeg",
-    "isVideo": false
-  },
-  {
-    "id": "1sPbXw4NeXnBufMjHIlwiiQ3PabCEw3UB",
-    "name": "VID 20250917 110508",
-    "image": "https://lh3.googleusercontent.com/d/1sPbXw4NeXnBufMjHIlwiiQ3PabCEw3UB=w1000",
-    "category": "Random",
-    "driveUrl": "https://drive.google.com/file/d/1sPbXw4NeXnBufMjHIlwiiQ3PabCEw3UB/view?usp=sharing",
-    "mimeType": "video/mp4",
-    "isVideo": true
   }
 ];
 

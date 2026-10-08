@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Original large MP4 files (exceed GitHub limit)
+public/videos/motion-cv.mp4
+public/videos/sdgs-motion.mp4
+public/videos/traveloka-ad.mp4
+public/videos/dove-campaign.mp4
+

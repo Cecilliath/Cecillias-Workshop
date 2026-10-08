@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FiArrowUpRight, FiPlay } from "react-icons/fi";
+import { FiArrowUpRight } from "react-icons/fi";
 import type { ProjectItem } from "../data/projectsData";
 import { useViewportVideo } from "../hooks/useViewportVideo";
 
@@ -10,74 +10,72 @@ interface Props {
 }
 
 export const FeaturedMotionCV: React.FC<Props> = ({ project, onSelectProject }) => {
-  const { videoRef, hasError, setHasError } = useViewportVideo();
+  const { videoRef, hasError, setHasError } = useViewportVideo(0.4);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
+    <motion.article
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="mb-14 cursor-pointer group"
+      className="mb-14 md:mb-20 cursor-pointer group"
       onClick={() => onSelectProject(project)}
     >
-      <div className="mb-4">
-        <span className="inline-block text-[11px] uppercase tracking-widest font-medium text-brown-light bg-beige/50 px-3 py-1 rounded-full mb-2">
-          Featured Motion
+      <div className="flex items-center justify-between mb-3 border-b border-beige/40 pb-2">
+        <span className="text-[11px] uppercase tracking-widest font-mono text-brown font-medium">
+          ✦ FEATURED MOTION PIECE
         </span>
-        <h3 className="font-display text-2xl md:text-3xl font-medium text-charcoal group-hover:text-brown transition-colors">
-          {project.title}
-        </h3>
+        <span className="text-xs text-charcoal/40 font-mono">
+          {project.category} · {project.year}
+        </span>
       </div>
 
-      <div className="card-soft overflow-hidden relative border border-beige/60 hover:shadow-elevated transition-shadow duration-500 rounded-3xl">
-        <div className="aspect-[16/9] md:aspect-[21/9] max-h-[580px] w-full bg-charcoal/90 relative overflow-hidden flex items-center justify-center">
-          {!hasError && project.previewVideo ? (
-            <video
-              ref={videoRef}
-              src={project.previewVideo}
-              poster={project.thumbnail}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              onError={() => setHasError(true)}
-              className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-            />
-          ) : (
-            <iframe
-              src={`https://drive.google.com/file/d/${project.id}/preview`}
-              className="w-full h-full border-0 pointer-events-none scale-105"
-              allow="autoplay; fullscreen"
-              title={project.title}
-            />
-          )}
+      {/* Editorial Video Hero Framing - Clean & Quiet */}
+      <div className="relative w-full aspect-[16/9] md:aspect-[21/9] bg-charcoal/90 overflow-hidden shadow-soft group-hover:shadow-elevated transition-shadow duration-500">
+        {!hasError && project.previewVideo ? (
+          <video
+            ref={videoRef}
+            src={project.previewVideo}
+            poster={project.thumbnail}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            onError={() => setHasError(true)}
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.015]"
+          />
+        ) : (
+          <img
+            src={project.thumbnail}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.015]"
+          />
+        )}
 
-          {/* Subtle Overlay on hover */}
-          <div className="absolute inset-0 bg-charcoal/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-            <span className="inline-flex items-center gap-2 text-sm font-medium text-cream bg-charcoal/80 backdrop-blur-md px-5 py-2.5 rounded-full border border-cream/20 shadow-lg translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-              <FiPlay className="text-xs" /> VIEW PROJECT ↗
-            </span>
-          </div>
-
-          <span className="absolute bottom-4 left-4 bg-charcoal/70 backdrop-blur-sm text-cream text-xs px-3 py-1 rounded-full font-medium">
-            Motion Design · {project.year}
+        {/* Minimal Editorial Overlay on Hover */}
+        <div className="absolute inset-0 bg-charcoal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-between p-6 md:p-8 pointer-events-none">
+          <span className="text-cream text-xs font-mono tracking-wider uppercase bg-charcoal/80 backdrop-blur-sm px-4 py-2 rounded-full inline-flex items-center gap-2">
+            EXPLORE PROJECT DETAILS <FiArrowUpRight className="text-sm" />
           </span>
         </div>
+      </div>
 
-        <div className="p-5 md:p-6 bg-cream/60 flex items-center justify-between border-t border-beige/40">
-          <div>
-            <p className="text-xs section-label mb-1">Featured Showcase</p>
-            <p className="text-sm text-charcoal/75 line-clamp-1 max-w-2xl">
-              {project.description}
-            </p>
-          </div>
-          <div className="w-10 h-10 rounded-full bg-beige/50 flex items-center justify-center group-hover:bg-blush/60 transition-colors duration-300 shrink-0 ml-4">
-            <FiArrowUpRight className="text-brown text-lg" />
-          </div>
+      {/* Minimal Project Metadata Below */}
+      <div className="mt-4 flex flex-col md:flex-row md:items-baseline justify-between gap-2">
+        <div className="flex-1">
+          <h3 className="font-display text-2xl md:text-3xl font-medium text-charcoal group-hover:text-brown transition-colors">
+            {project.title}
+          </h3>
+          <p className="text-xs md:text-sm text-charcoal/60 mt-1 max-w-2xl line-clamp-2">
+            {project.description}
+          </p>
+        </div>
+        <div className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-brown group-hover:text-brown-light transition-colors shrink-0">
+          <span>View Project</span>
+          <FiArrowUpRight className="text-sm transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 };

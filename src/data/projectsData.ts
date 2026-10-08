@@ -1,30 +1,43 @@
-export type ProjectCategory = 'ALL' | 'MOTION' | 'POSTER DESIGN' | 'ILLUSTRATION & DIGITAL' | 'APPAREL';
+export type FilterCategory = 'ALL' | 'MOTION' | 'GRAPHIC DESIGN' | 'UI/UX' | 'ILLUSTRATION' | 'DIGITAL' | 'APPAREL';
 
-export type ProjectType = 'motion' | 'poster' | 'character' | 'webtoon' | 'apparel' | 'digital';
+export type ProjectType = 'motion' | 'poster' | 'character' | 'webtoon' | 'apparel' | 'digital' | 'uiux';
+
+export interface WebtoonEpisode {
+  episodeNumber: string;
+  title: string;
+  subtitle?: string;
+  panels: string[];
+  isTeaser?: boolean;
+}
 
 export interface ProjectItem {
   id: string;
   title: string;
-  category: Exclude<ProjectCategory, 'ALL'>;
+  category: Exclude<FilterCategory, 'ALL'>;
   year: string;
   type: ProjectType;
   thumbnail: string;
   previewVideo?: string;
   fullVideo?: string;
+  youtubeId?: string;
   description: string;
   role: string;
   tools: string[];
   driveUrl?: string;
   pdfUrl?: string;
   additionalImages?: string[];
+  episodes?: WebtoonEpisode[];
   isFeatured?: boolean;
+  gridSpan?: 'full' | 'wide' | 'tall' | 'normal';
+  aspectRatio?: '16/9' | '3/4' | '4/5' | '9/16' | '1/1' | '2/3';
 }
 
-export const filterCategories: ProjectCategory[] = [
+export const filterCategories: FilterCategory[] = [
   'ALL',
   'MOTION',
-  'POSTER DESIGN',
-  'ILLUSTRATION & DIGITAL',
+  'GRAPHIC DESIGN',
+  'ILLUSTRATION',
+  'DIGITAL',
   'APPAREL',
 ];
 
@@ -32,34 +45,38 @@ export const projectsData: ProjectItem[] = [
   // ─── FEATURED MOTION CV ───
   {
     id: '1ztLLmKSNEMbyUXDvbPt547zSwMCv4GpB',
-    title: 'Motion CV',
+    title: 'Motion CV & Visual Reel',
     category: 'MOTION',
     year: '2025',
     type: 'motion',
     thumbnail: 'https://lh3.googleusercontent.com/d/1ztLLmKSNEMbyUXDvbPt547zSwMCv4GpB=w1000',
-    previewVideo: 'https://drive.usercontent.google.com/download?id=1ztLLmKSNEMbyUXDvbPt547zSwMCv4GpB&export=download',
-    fullVideo: 'https://drive.google.com/file/d/1ztLLmKSNEMbyUXDvbPt547zSwMCv4GpB/preview',
+    previewVideo: '/videos/motion-cv-preview.mp4',
+    youtubeId: 'Fc7l53q-vvc',
     description: 'An animated visual resume showcasing creative direction, motion graphics, kinetic typography, and multidisciplinary design expertise.',
     role: 'Motion Designer & Animator',
     tools: ['After Effects', 'Illustrator', 'Premiere Pro'],
     driveUrl: 'https://drive.google.com/file/d/1ztLLmKSNEMbyUXDvbPt547zSwMCv4GpB/view?usp=sharing',
     isFeatured: true,
+    gridSpan: 'wide',
+    aspectRatio: '16/9',
   },
 
-  // ─── OTHER MOTION PROJECTS ───
+  // ─── MOTION GRAPHICS ───
   {
     id: '1Ms3yyqZUS_WK7SyfJLkkmf7p5RuIoWa-',
     title: "Dove's Video Campaign Project",
     category: 'MOTION',
     year: '2025',
     type: 'motion',
-    thumbnail: 'https://lh3.googleusercontent.com/d/1Ms3yyqZUS_WK7SyfJLkkmf7p5RuIoWa-=w1000',
-    previewVideo: 'https://drive.usercontent.google.com/download?id=1Ms3yyqZUS_WK7SyfJLkkmf7p5RuIoWa-&export=download',
-    fullVideo: 'https://drive.google.com/file/d/1Ms3yyqZUS_WK7SyfJLkkmf7p5RuIoWa-/preview',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1JppZbdEG95whsO9-rASfSnij0qbVTGvl=w1000',
+    previewVideo: '/videos/dove-campaign-preview.mp4',
+    youtubeId: 'XOsQivDEJeI',
     description: 'A 2D animated commercial campaign video focusing on soft visual storytelling, gentle color palettes, and emotional brand connection.',
     role: '2D Animator & Storyboard Artist',
     tools: ['After Effects', 'Photoshop', 'Procreate'],
     driveUrl: 'https://drive.google.com/file/d/1Ms3yyqZUS_WK7SyfJLkkmf7p5RuIoWa-/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '16/9',
   },
   {
     id: '13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn',
@@ -68,33 +85,105 @@ export const projectsData: ProjectItem[] = [
     year: '2025',
     type: 'motion',
     thumbnail: 'https://lh3.googleusercontent.com/d/13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn=w1000',
-    previewVideo: 'https://drive.usercontent.google.com/download?id=13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn&export=download',
-    fullVideo: 'https://drive.google.com/file/d/13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn/preview',
+    previewVideo: '/videos/sdgs-motion-preview.mp4',
+    youtubeId: 'DZkaGCIFxWI',
     description: 'An educational motion graphics piece explaining Sustainable Development Goals through clean icon transitions and dynamic motion design.',
     role: 'Motion Graphics Designer',
     tools: ['After Effects', 'Illustrator'],
     driveUrl: 'https://drive.google.com/file/d/13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '16/9',
   },
   {
     id: '1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2',
-    title: 'Traveloka Advertisement',
+    title: 'Traveloka Commercial Ad',
     category: 'MOTION',
     year: '2024',
     type: 'motion',
     thumbnail: 'https://lh3.googleusercontent.com/d/1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2=w1000',
-    previewVideo: 'https://drive.usercontent.google.com/download?id=1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2&export=download',
-    fullVideo: 'https://drive.google.com/file/d/1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2/preview',
+    previewVideo: '/videos/traveloka-ad-preview.mp4',
+    youtubeId: 'BeiqzeqE6iY',
     description: 'A commercial advertisement motion design featuring fluid vector animations, vibrant travel themes, and promotional typography.',
     role: 'Motion Designer & Compositor',
     tools: ['After Effects', 'Illustrator'],
     driveUrl: 'https://drive.google.com/file/d/1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '9/16',
   },
 
-  // ─── POSTER DESIGN ───
+  // ─── WEBTOON DIGITAL COMIC (SINGLE ITEM IN MAIN GALLERY) ───
+  {
+    id: 'webtoon-harta-arwah-penuntun',
+    title: 'Harta Arwah Penuntun',
+    category: 'DIGITAL',
+    year: '2024',
+    type: 'webtoon',
+    thumbnail: '/webtoon/ep1-scene1.jpg',
+    description: 'An original 5-episode Indonesian digital webtoon comic exploring dark folklore, supernatural mystery, and atmospheric visual storytelling.',
+    role: 'Comic Artist, Illustrator & Storywriter',
+    tools: ['Procreate', 'Photoshop', 'Clip Studio Paint'],
+    driveUrl: 'https://drive.google.com/drive/folders/10ThtT0MwcQ9c03X6KQjd-tDs1oMwR-sl',
+    gridSpan: 'normal',
+    aspectRatio: '3/4',
+    episodes: [
+      {
+        episodeNumber: '01',
+        title: 'Episode 01 — Pertemuan Pertama',
+        subtitle: 'A quiet night turns uncanny when an ancient compass reveals unseen spirits.',
+        panels: [
+          '/webtoon/ep1-scene1.jpg',
+          '/webtoon/ep1-scene2.jpg',
+          '/webtoon/ep1-scene3.jpg',
+          '/webtoon/ep1-scene4.jpg',
+          '/webtoon/ep1-scene5.jpg',
+          '/webtoon/ep1-scene6.jpg',
+          '/webtoon/ep1-scene7.jpg',
+        ],
+      },
+      {
+        episodeNumber: '02',
+        title: 'Episode 02 — Jejak di Kegelapan',
+        subtitle: 'Following the spirit guide deep into the forgotten forest.',
+        panels: [
+          '/webtoon/ep2-scene1.jpg',
+          '/webtoon/ep2-scene2.jpg',
+          '/webtoon/ep2-scene3.jpg',
+          '/webtoon/ep2-scene4.jpg',
+          '/webtoon/ep2-scene5.jpg',
+          '/webtoon/ep2-scene6.jpg',
+          '/webtoon/ep2-scene7.jpg',
+        ],
+      },
+      {
+        episodeNumber: '03',
+        title: 'Episode 03 — Bisikan Leluhur',
+        subtitle: 'Uncovering the lost scroll of the ancestral village.',
+        panels: [
+          '/webtoon/ep3-scene1.jpg',
+        ],
+      },
+      {
+        episodeNumber: '04',
+        title: 'Episode 04 — Gerbang Bayangan',
+        subtitle: 'The threshold between realms begins to collapse.',
+        panels: [],
+        isTeaser: true,
+      },
+      {
+        episodeNumber: '05',
+        title: 'Episode 05 — Rahasia Terakhir',
+        subtitle: 'The climactic resolution of the spirit artifact.',
+        panels: [],
+        isTeaser: true,
+      },
+    ],
+  },
+
+  // ─── GRAPHIC DESIGN & POSTERS ───
   {
     id: '1Vtp-H-gGiUujHlt6AV03nFRimaTKbWJz',
     title: 'Diversity Is Our Strength',
-    category: 'POSTER DESIGN',
+    category: 'GRAPHIC DESIGN',
     year: '2025',
     type: 'poster',
     thumbnail: 'https://lh3.googleusercontent.com/d/1Vtp-H-gGiUujHlt6AV03nFRimaTKbWJz=w1000',
@@ -102,11 +191,13 @@ export const projectsData: ProjectItem[] = [
     role: 'Graphic & Poster Designer',
     tools: ['Illustrator', 'Photoshop'],
     driveUrl: 'https://drive.google.com/file/d/1Vtp-H-gGiUujHlt6AV03nFRimaTKbWJz/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '3/4',
   },
   {
     id: '1XUhtLd063Lq7I2aTwtusoTG8rdpgfI4o',
     title: 'Internet Rumah Gak Ribet',
-    category: 'POSTER DESIGN',
+    category: 'GRAPHIC DESIGN',
     year: '2025',
     type: 'poster',
     thumbnail: 'https://lh3.googleusercontent.com/d/1XUhtLd063Lq7I2aTwtusoTG8rdpgfI4o=w1000',
@@ -114,11 +205,13 @@ export const projectsData: ProjectItem[] = [
     role: 'Poster & Visual Designer',
     tools: ['Photoshop', 'Illustrator'],
     driveUrl: 'https://drive.google.com/file/d/1XUhtLd063Lq7I2aTwtusoTG8rdpgfI4o/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '3/4',
   },
   {
     id: '1ZgT8mdwfyqb666ufE3nkqs-Wtw2GEQsD',
     title: 'Yoghurt Series Campaign',
-    category: 'POSTER DESIGN',
+    category: 'GRAPHIC DESIGN',
     year: '2024',
     type: 'poster',
     thumbnail: 'https://lh3.googleusercontent.com/d/1ZgT8mdwfyqb666ufE3nkqs-Wtw2GEQsD=w1000',
@@ -126,11 +219,13 @@ export const projectsData: ProjectItem[] = [
     role: 'Brand & Editorial Designer',
     tools: ['Illustrator', 'Photoshop'],
     driveUrl: 'https://drive.google.com/file/d/1ZgT8mdwfyqb666ufE3nkqs-Wtw2GEQsD/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '3/4',
   },
   {
     id: '18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa',
-    title: 'Brand Identity & Logo Design',
-    category: 'POSTER DESIGN',
+    title: 'Brand Identity & Logo Construction',
+    category: 'GRAPHIC DESIGN',
     year: '2024',
     type: 'poster',
     thumbnail: 'https://lh3.googleusercontent.com/d/18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa=w1000',
@@ -138,11 +233,13 @@ export const projectsData: ProjectItem[] = [
     role: 'Logo & Identity Designer',
     tools: ['Illustrator'],
     driveUrl: 'https://drive.google.com/file/d/18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '3/4',
   },
   {
     id: '1NZg260mA08QAmWVYTKYOLtVZU1sfN7k2',
-    title: 'Event Banner Visual',
-    category: 'POSTER DESIGN',
+    title: 'Event Exhibition Banner Visual',
+    category: 'GRAPHIC DESIGN',
     year: '2024',
     type: 'poster',
     thumbnail: 'https://lh3.googleusercontent.com/d/1NZg260mA08QAmWVYTKYOLtVZU1sfN7k2=w1000',
@@ -150,13 +247,15 @@ export const projectsData: ProjectItem[] = [
     role: 'Banner & Event Graphic Designer',
     tools: ['Illustrator', 'Photoshop'],
     driveUrl: 'https://drive.google.com/file/d/1NZg260mA08QAmWVYTKYOLtVZU1sfN7k2/view?usp=sharing',
+    gridSpan: 'wide',
+    aspectRatio: '16/9',
   },
 
-  // ─── ILLUSTRATION & DIGITAL ───
+  // ─── ILLUSTRATION ───
   {
     id: '18pYlW092tE7JPDU1ghytlYRwB6K8avRl',
     title: 'Crebo Mascot Character Design',
-    category: 'ILLUSTRATION & DIGITAL',
+    category: 'ILLUSTRATION',
     year: '2025',
     type: 'character',
     thumbnail: 'https://lh3.googleusercontent.com/d/18pYlW092tE7JPDU1ghytlYRwB6K8avRl=w1000',
@@ -164,11 +263,16 @@ export const projectsData: ProjectItem[] = [
     role: 'Character Designer & Illustrator',
     tools: ['Procreate', 'Photoshop'],
     driveUrl: 'https://drive.google.com/file/d/18pYlW092tE7JPDU1ghytlYRwB6K8avRl/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '4/5',
+    additionalImages: [
+      'https://lh3.googleusercontent.com/d/11sPdexslEfpt9gTDQSS8VTbDdNH_M2xp=w1000',
+    ],
   },
   {
     id: '11sPdexslEfpt9gTDQSS8VTbDdNH_M2xp',
-    title: 'Lia & Crebo Character Sheet',
-    category: 'ILLUSTRATION & DIGITAL',
+    title: 'Lia & Crebo Character Model Sheet',
+    category: 'ILLUSTRATION',
     year: '2024',
     type: 'character',
     thumbnail: 'https://lh3.googleusercontent.com/d/11sPdexslEfpt9gTDQSS8VTbDdNH_M2xp=w1000',
@@ -176,11 +280,13 @@ export const projectsData: ProjectItem[] = [
     role: 'Concept Artist & Illustrator',
     tools: ['Procreate', 'Illustrator'],
     driveUrl: 'https://drive.google.com/file/d/11sPdexslEfpt9gTDQSS8VTbDdNH_M2xp/view?usp=sharing',
+    gridSpan: 'wide',
+    aspectRatio: '16/9',
   },
   {
     id: '1zst67iA6JG0MWOg1KXSPR3iHrf8P4aRp',
     title: 'Packaging Illustration Design',
-    category: 'ILLUSTRATION & DIGITAL',
+    category: 'ILLUSTRATION',
     year: '2025',
     type: 'digital',
     thumbnail: 'https://lh3.googleusercontent.com/d/1zst67iA6JG0MWOg1KXSPR3iHrf8P4aRp=w1000',
@@ -188,6 +294,28 @@ export const projectsData: ProjectItem[] = [
     role: 'Packaging & Digital Illustrator',
     tools: ['Illustrator', 'Photoshop'],
     driveUrl: 'https://drive.google.com/file/d/1zst67iA6JG0MWOg1KXSPR3iHrf8P4aRp/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '4/5',
+  },
+  {
+    id: '1ABPX1HfH_1N_MJlA1Mmisi4z7QQwasWY',
+    title: 'Digital Concept Art Series',
+    category: 'ILLUSTRATION',
+    year: '2024',
+    type: 'digital',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1ABPX1HfH_1N_MJlA1Mmisi4z7QQwasWY=w1000',
+    description: 'A study of mood, lighting, and digital paint techniques exploring stylized characters and fantasy environmental textures.',
+    role: 'Digital Illustrator',
+    tools: ['Procreate', 'Photoshop'],
+    driveUrl: 'https://drive.google.com/file/d/1ABPX1HfH_1N_MJlA1Mmisi4z7QQwasWY/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '4/5',
+    additionalImages: [
+      'https://lh3.googleusercontent.com/d/1ENMCyWYMDLae9Lo7XhAbYsCEjlb24sJD=w1000',
+      'https://lh3.googleusercontent.com/d/1OVDt4GBSaQmhmULF7CjMPDi_UfBkmu_v=w1000',
+      'https://lh3.googleusercontent.com/d/1ZMO2KQZwBfvgbMGFjVq314mvxJ8PY95z=w1000',
+      'https://lh3.googleusercontent.com/d/1nASDEnovk3lwSV7AvYOKSi3yH_dzVm6h=w1000',
+    ],
   },
 
   // ─── APPAREL DESIGN ───
@@ -202,5 +330,7 @@ export const projectsData: ProjectItem[] = [
     role: 'Apparel & Graphic Designer',
     tools: ['Illustrator', 'Photoshop'],
     driveUrl: 'https://drive.google.com/file/d/1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '4/5',
   },
 ];
