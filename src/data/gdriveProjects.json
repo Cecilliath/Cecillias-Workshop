@@ -1,7 +1,7 @@
 {
   "folderId": "1WROCCh04L3UvlNd59WW6BZ0HldeFqsb5",
   "folderUrl": "https://drive.google.com/drive/folders/1WROCCh04L3UvlNd59WW6BZ0HldeFqsb5?usp=drive_link",
-  "lastUpdated": "2026-10-08T09:37:23.423Z",
+  "lastUpdated": "2026-10-08T14:57:09.143Z",
   "categories": [
     "2D Animation",
     "Designs",
@@ -167,6 +167,17 @@
       "isVideo": true
     },
     {
+      "id": "1KLJW_aeeBcR7RRbE0hulFhDNxHFftmix",
+      "name": "SDG Video Thumbnail.PNG",
+      "cleanName": "SDG Video Thumbnail",
+      "category": "Motion Effects",
+      "mimeType": "image/jpeg",
+      "image": "https://lh3.googleusercontent.com/d/1KLJW_aeeBcR7RRbE0hulFhDNxHFftmix=w1000",
+      "thumbnail": "https://drive.google.com/thumbnail?id=1KLJW_aeeBcR7RRbE0hulFhDNxHFftmix&sz=w800",
+      "driveUrl": "https://drive.google.com/file/d/1KLJW_aeeBcR7RRbE0hulFhDNxHFftmix/view?usp=sharing",
+      "isVideo": false
+    },
+    {
       "id": "13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn",
       "name": "SDGs Motion Effect",
       "cleanName": "SDGs Motion Effect",
@@ -187,6 +198,17 @@
       "thumbnail": "https://drive.google.com/thumbnail?id=1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2&sz=w800",
       "driveUrl": "https://drive.google.com/file/d/1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2/view?usp=sharing",
       "isVideo": true
+    },
+    {
+      "id": "15Douf4qsWxtJkQF-v7sHYt9JPLpnA-dc",
+      "name": "Traveloka Video Thumbnail.PNG",
+      "cleanName": "Traveloka Video Thumbnail",
+      "category": "Motion Effects",
+      "mimeType": "image/png",
+      "image": "https://lh3.googleusercontent.com/d/15Douf4qsWxtJkQF-v7sHYt9JPLpnA-dc=w1000",
+      "thumbnail": "https://drive.google.com/thumbnail?id=15Douf4qsWxtJkQF-v7sHYt9JPLpnA-dc&sz=w800",
+      "driveUrl": "https://drive.google.com/file/d/15Douf4qsWxtJkQF-v7sHYt9JPLpnA-dc/view?usp=sharing",
+      "isVideo": false
     },
     {
       "id": "1NZg260mA08QAmWVYTKYOLtVZU1sfN7k2",

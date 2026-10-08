@@ -166,6 +166,15 @@ export const gdriveProjects: ArtGalleryItem[] = [
     "isVideo": true
   },
   {
+    "id": "1KLJW_aeeBcR7RRbE0hulFhDNxHFftmix",
+    "name": "SDG Video Thumbnail",
+    "image": "https://lh3.googleusercontent.com/d/1KLJW_aeeBcR7RRbE0hulFhDNxHFftmix=w1000",
+    "category": "Motion Effects",
+    "driveUrl": "https://drive.google.com/file/d/1KLJW_aeeBcR7RRbE0hulFhDNxHFftmix/view?usp=sharing",
+    "mimeType": "image/jpeg",
+    "isVideo": false
+  },
+  {
     "id": "13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn",
     "name": "SDGs Motion Effect",
     "image": "https://lh3.googleusercontent.com/d/13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn=w1000",
@@ -182,6 +191,15 @@ export const gdriveProjects: ArtGalleryItem[] = [
     "driveUrl": "https://drive.google.com/file/d/1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2/view?usp=sharing",
     "mimeType": "video/mp4",
     "isVideo": true
+  },
+  {
+    "id": "15Douf4qsWxtJkQF-v7sHYt9JPLpnA-dc",
+    "name": "Traveloka Video Thumbnail",
+    "image": "https://lh3.googleusercontent.com/d/15Douf4qsWxtJkQF-v7sHYt9JPLpnA-dc=w1000",
+    "category": "Motion Effects",
+    "driveUrl": "https://drive.google.com/file/d/15Douf4qsWxtJkQF-v7sHYt9JPLpnA-dc/view?usp=sharing",
+    "mimeType": "image/png",
+    "isVideo": false
   },
   {
     "id": "1NZg260mA08QAmWVYTKYOLtVZU1sfN7k2",

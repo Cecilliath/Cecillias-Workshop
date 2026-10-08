@@ -17,6 +17,7 @@ import portrait from "/me.jpeg";
 import { projectsData, filterCategories } from "../data/projectsData";
 import type { FilterCategory, ProjectItem } from "../data/projectsData";
 import { ProjectCard } from "../components/ProjectCard";
+import { FeaturedMotionCV } from "../components/FeaturedMotionCV";
 import { ProjectCategoryFilter } from "../components/ProjectCategoryFilter";
 import { ProjectDetailModal } from "../components/ProjectDetailModal";
 import { WebtoonDetailView } from "../components/WebtoonDetailView";
@@ -63,10 +64,12 @@ const experience = [
   },
 ];
 
+const MOTION_CV_ID = "1ztLLmKSNEMbyUXDvbPt547zSwMCv4GpB";
 const DOVE_ID = "1Ms3yyqZUS_WK7SyfJLkkmf7p5RuIoWa-";
 const SDG_ID = "13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn";
 const TRAVELOKA_ID = "1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2";
-const TOP_MOTION_IDS = [DOVE_ID, SDG_ID, TRAVELOKA_ID];
+const WEBTOON_ID = "webtoon-harta-arwah-penuntun";
+const COMPOSITION_IDS = [SDG_ID, DOVE_ID, WEBTOON_ID, TRAVELOKA_ID];
 
 export const HomeScreen: React.FC = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
@@ -74,20 +77,26 @@ export const HomeScreen: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<FilterCategory>("ALL");
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
+  const motionCvProject = projectsData.find((p) => p.id === MOTION_CV_ID);
   const doveProject = projectsData.find((p) => p.id === DOVE_ID);
   const sdgProject = projectsData.find((p) => p.id === SDG_ID);
   const travelokaProject = projectsData.find((p) => p.id === TRAVELOKA_ID);
+  const webtoonProject = projectsData.find((p) => p.id === WEBTOON_ID);
 
-  const showTopMotionComposition =
-    (activeFilter === "ALL" || activeFilter === "MOTION VIDEO") &&
-    doveProject &&
-    sdgProject &&
-    travelokaProject;
+  const showFeaturedMotionCv =
+    !!motionCvProject &&
+    (activeFilter === "ALL" || activeFilter === "MOTION VIDEO");
+
+  const showSpecialComposition =
+    activeFilter === "ALL" &&
+    !!sdgProject &&
+    !!doveProject &&
+    !!webtoonProject &&
+    !!travelokaProject;
 
   const mainGridProjects = projectsData.filter((p) => {
-    if (showTopMotionComposition && TOP_MOTION_IDS.includes(p.id)) {
-      return false;
-    }
+    if (showFeaturedMotionCv && p.id === MOTION_CV_ID) return false;
+    if (showSpecialComposition && COMPOSITION_IDS.includes(p.id)) return false;
     if (activeFilter === "ALL") return true;
     return p.category === activeFilter;
   });
@@ -305,41 +314,52 @@ export const HomeScreen: React.FC = () => {
                 />
               </div>
 
-              {/* ─── SPECIAL TOP 2-COLUMN MOTION COMPOSITION (DOVES + SDG | TRAVELOKA) ─── */}
-              {showTopMotionComposition && doveProject && sdgProject && travelokaProject && (
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch mb-12 lg:mb-16">
-                  {/* LEFT COLUMN: Doves (top) + SDG (bottom) */}
-                  <div className="flex flex-col gap-6 lg:gap-8 w-full justify-between">
-                    <ScrollReveal delay={0.04}>
-                      <ProjectCard
-                        project={doveProject}
-                        onSelectProject={(p) => setSelectedProject(p)}
-                        layoutVariant="normal"
-                      />
-                    </ScrollReveal>
-                    <ScrollReveal delay={0.08}>
-                      <ProjectCard
-                        project={sdgProject}
-                        onSelectProject={(p) => setSelectedProject(p)}
-                        layoutVariant="normal"
-                      />
-                    </ScrollReveal>
-                  </div>
+              {showFeaturedMotionCv && motionCvProject && (
+                <FeaturedMotionCV
+                  project={motionCvProject}
+                  onSelectProject={(p) => setSelectedProject(p)}
+                />
+              )}
 
-                  {/* RIGHT COLUMN: Traveloka spanning entire height */}
-                  <div className="w-full h-full flex flex-col">
-                    <ScrollReveal delay={0.12} className="h-full flex flex-col">
-                      <ProjectCard
-                        project={travelokaProject}
-                        onSelectProject={(p) => setSelectedProject(p)}
-                        layoutVariant="tall"
-                      />
-                    </ScrollReveal>
+              {showSpecialComposition &&
+                sdgProject &&
+                doveProject &&
+                webtoonProject &&
+                travelokaProject && (
+                <div
+                  className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)] gap-6 lg:gap-8 mb-12 lg:mb-16 lg:h-[min(48vw,530px)]"
+                >
+                  <div className="lg:col-start-1 lg:row-start-1 min-h-0 h-full">
+                    <ProjectCard
+                      project={sdgProject}
+                      onSelectProject={(p) => setSelectedProject(p)}
+                      layoutVariant="composition"
+                    />
+                  </div>
+                  <div className="lg:col-start-1 lg:row-start-2 min-h-0 h-full">
+                    <ProjectCard
+                      project={doveProject}
+                      onSelectProject={(p) => setSelectedProject(p)}
+                      layoutVariant="composition"
+                    />
+                  </div>
+                  <div className="lg:col-start-2 lg:row-start-1 lg:row-span-2 min-h-0 h-full">
+                    <ProjectCard
+                      project={webtoonProject}
+                      onSelectProject={(p) => setSelectedProject(p)}
+                      layoutVariant="composition"
+                    />
+                  </div>
+                  <div className="lg:col-start-3 lg:row-start-1 lg:row-span-2 min-h-0 h-full">
+                    <ProjectCard
+                      project={travelokaProject}
+                      onSelectProject={(p) => setSelectedProject(p)}
+                      layoutVariant="composition"
+                    />
                   </div>
                 </div>
               )}
 
-              {/* ─── SYSTEMATIC 3-COLUMN GRID FOR ALL OTHER PROJECTS ─── */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
                 {mainGridProjects.map((project, i) => (
                   <div key={project.id} className="col-span-1 w-full">
@@ -354,7 +374,7 @@ export const HomeScreen: React.FC = () => {
                 ))}
               </div>
 
-              {mainGridProjects.length === 0 && !showTopMotionComposition && (
+              {mainGridProjects.length === 0 && !showFeaturedMotionCv && !showSpecialComposition && (
                 <p className="text-sm text-charcoal/45 font-mono text-center py-20 uppercase tracking-wider">
                   No projects available in this category yet.
                 </p>
