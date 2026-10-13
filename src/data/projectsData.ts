@@ -1,4 +1,4 @@
-export type FilterCategory = 'ALL' | 'MOTION VIDEO' | 'GRAPHIC DESIGN' | 'BRANDING' | 'DIGITAL ILLUSTRATION' | 'WEBTOON';
+export type FilterCategory = 'ALL' | 'MOTION VIDEO' | 'GRAPHIC DESIGN' | 'BRANDING' | 'DIGITAL ILLUSTRATION' | 'WEBTOON' | 'UI/UX';
 
 export type ProjectType = 'motion' | 'poster' | 'character' | 'webtoon' | 'apparel' | 'digital' | 'uiux';
 
@@ -39,6 +39,7 @@ export const filterCategories: FilterCategory[] = [
   'BRANDING',
   'DIGITAL ILLUSTRATION',
   'WEBTOON',
+  'UI/UX',
 ];
 
 export const projectsData: ProjectItem[] = [
@@ -234,32 +235,90 @@ export const projectsData: ProjectItem[] = [
 
   // ─── BRANDING ───
   {
-    id: '18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa',
-    title: 'Poster Advertisement',
-    category: 'GRAPHIC DESIGN',
+    id: '1TYFdb6SK10F4QEaBFSX1eE_oz-w3FPQC',
+    title: 'Sloosh — Brand Identity & Business Proposal',
+    category: 'BRANDING',
     year: '2026',
     type: 'poster',
-    thumbnail: 'https://lh3.googleusercontent.com/d/18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa=w1000',
-    description: 'A comprehensive logo mark and visual identity exploration focusing on clean geometry, memorable mark construction, and versatile scaling.',
-    role: 'Poster Redesign',
-    tools: ['Canva'],
-    driveUrl: 'https://drive.google.com/file/d/18ewR9Tof5LpDseCkzhpHVXhJmPB_quDa/view?usp=sharing',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1TYFdb6SK10F4QEaBFSX1eE_oz-w3FPQC=w1000',
+    description: 'A comprehensive brand identity system and business proposal created for Sloosh, establishing visual guidelines, brand collateral, color hierarchy, and strategic marketing positioning.',
+    role: 'Brand Identity Designer & Strategist',
+    tools: ['Illustrator', 'Photoshop', 'Canva'],
+    driveUrl: 'https://drive.google.com/file/d/1TYFdb6SK10F4QEaBFSX1eE_oz-w3FPQC/view?usp=sharing',
+    pdfUrl: 'https://drive.google.com/file/d/1TYFdb6SK10F4QEaBFSX1eE_oz-w3FPQC/view',
+    gridSpan: 'wide',
+    aspectRatio: '16/9',
+  },
+  {
+    id: '1aH2V3NpWBPqI9gDI_kH5K5okkUC703W-',
+    title: "L'Elixir — Perfume Brand Identity & Packaging",
+    category: 'BRANDING',
+    year: '2026',
+    type: 'poster',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1njm0-zlJf5jnyldvpTtFNHCGngHp7B_c=w1000',
+    description: 'An elegant fragrance brand identity presentation combining luxury packaging design, editorial typography, minimalist bottle graphics, and sensual visual storytelling.',
+    role: 'Visual Identity & Packaging Designer',
+    tools: ['Illustrator', 'Photoshop', 'Procreate'],
+    driveUrl: 'https://drive.google.com/file/d/1aH2V3NpWBPqI9gDI_kH5K5okkUC703W-/view?usp=sharing',
+    pdfUrl: 'https://drive.google.com/file/d/1aH2V3NpWBPqI9gDI_kH5K5okkUC703W-/view',
+    additionalImages: [
+      'https://lh3.googleusercontent.com/d/1njm0-zlJf5jnyldvpTtFNHCGngHp7B_c=w1000'
+    ],
     gridSpan: 'normal',
     aspectRatio: '3/4',
   },
   {
-    id: '1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY',
-    title: 'T-Shirt Design',
-    category: 'BRANDING',
+    id: '1PS6oVjI9b_-_oaOLQWORBvFoPFR59aGi',
+    title: 'Streetwear T-Shirt Design & Garment Mockup',
+    category: 'GRAPHIC DESIGN',
     year: '2025',
     type: 'apparel',
-    thumbnail: 'https://lh3.googleusercontent.com/d/1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY=w1000',
-    description: 'Custom streetwear graphic apparel print design presented on photorealistic garment mockups for production and retail presentation.',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1PS6oVjI9b_-_oaOLQWORBvFoPFR59aGi=w1000',
+    description: 'Custom streetwear graphic apparel print design presented on photorealistic garment mockups for production, retail presentation, and brand merchandise.',
     role: 'Apparel & Graphic Designer',
     tools: ['Illustrator', 'Photoshop'],
-    driveUrl: 'https://drive.google.com/file/d/1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY/view?usp=sharing',
+    driveUrl: 'https://drive.google.com/file/d/1PS6oVjI9b_-_oaOLQWORBvFoPFR59aGi/view?usp=sharing',
+    additionalImages: [
+      'https://lh3.googleusercontent.com/d/1o8rNgmrNfFu9wt-zXApIjqOFR9znj3cY=w1000'
+    ],
     gridSpan: 'normal',
     aspectRatio: '4/5',
+  },
+  {
+    id: '1MrgWIuS5vC5M8pFVFFuMRo2hNOoQQi7X',
+    title: 'Brand Identity Logo Design',
+    category: 'GRAPHIC DESIGN',
+    year: '2025',
+    type: 'poster',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1MrgWIuS5vC5M8pFVFFuMRo2hNOoQQi7X=w1000',
+    description: 'A clean geometric logo mark and vector emblem exploration focusing on brand recognition, balanced symmetry, and versatile cross-media application.',
+    role: 'Logo & Brand Identity Designer',
+    tools: ['Illustrator'],
+    driveUrl: 'https://drive.google.com/file/d/1MrgWIuS5vC5M8pFVFFuMRo2hNOoQQi7X/view?usp=sharing',
+    gridSpan: 'normal',
+    aspectRatio: '1/1',
+  },
+
+  // ─── UI/UX DESIGN ───
+  {
+    id: 'uiux-academic-portal',
+    title: 'Academic Portal Mobile App UI/UX Design',
+    category: 'UI/UX',
+    year: '2026',
+    type: 'uiux',
+    thumbnail: 'https://lh3.googleusercontent.com/d/1uzkPibOPWN8LzXVqp6aunpz-UI4VH5e2=w1000',
+    description: 'A student-centered academic management mobile application design featuring intuitive course tracking, personal bio profiles, academic status updates, and streamlined mobile navigation.',
+    role: 'UI/UX Designer & Mobile App Visual Strategist',
+    tools: ['Figma', 'Procreate', 'Illustrator'],
+    driveUrl: 'https://drive.google.com/drive/folders/1YShgtBZIrmfVat39FYyewGqaddb7Ym5K',
+    gridSpan: 'wide',
+    aspectRatio: '16/9',
+    additionalImages: [
+      'https://lh3.googleusercontent.com/d/1uzkPibOPWN8LzXVqp6aunpz-UI4VH5e2=w1000',
+      'https://lh3.googleusercontent.com/d/1taAf_dDxP8W-bszWvJOr1qsWfZpyJN0f=w1000',
+      'https://lh3.googleusercontent.com/d/1ShdMw2exEkAehSopz-pcS2y0iOou9rQ6=w1000',
+      'https://lh3.googleusercontent.com/d/1eGMI_GCGt-8ZfDoiAqPAIk7dCl32tYs0=w1000',
+    ],
   },
 
   // ─── DIGITAL ILLUSTRATION ───

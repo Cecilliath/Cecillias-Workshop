@@ -67,11 +67,10 @@ export const ProjectDetailModal: React.FC<Props> = ({ project, onClose }) => {
             {project.type === "motion" ? (
               project.youtubeId ? (
                 <div
-                  className={`w-full ${
-                    project.aspectRatio === "9/16"
+                  className={`w-full ${project.aspectRatio === "9/16"
                       ? "max-w-[320px] sm:max-w-[360px] aspect-[9/16] mx-auto"
                       : "aspect-[16/9]"
-                  } bg-charcoal overflow-hidden relative shadow-inner border border-beige/40`}
+                    } bg-charcoal overflow-hidden relative shadow-inner border border-beige/40`}
                 >
                   <iframe
                     src={`https://www.youtube.com/embed/${project.youtubeId}?autoplay=1&rel=0`}
