@@ -5,15 +5,38 @@ import type { ProjectItem } from "../data/projectsData";
 import { useViewportVideo } from "../hooks/useViewportVideo";
 import { getAssetUrl } from "../utils/getAssetUrl";
 
+const FIGMA_PROTOTYPE_URL =
+  "https://www.figma.com/proto/Qb57upoFcCbkYsyWWwn4QX/WireFrame-Lintar?node-id=120-26&p=f&t=UFhrNVm80aB2u6aw-0&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=120%3A17&show-proto-sidebar=1";
+
 interface Props {
   project: ProjectItem;
   onSelectProject: (project: ProjectItem) => void;
   layoutVariant?: "normal" | "wide" | "tall" | "full" | "composition";
 }
 
+/** Renders a minimal CSS phone mockup with the given thumbnail inside */
+const PhoneMockup: React.FC<{ thumbnailSrc: string; alt: string }> = ({ thumbnailSrc, alt }) => (
+  <div className="phone-mockup-wrapper">
+    <div className="phone-mockup-frame">
+      {/* Notch */}
+      <div className="phone-mockup-notch" />
+      {/* Screen */}
+      <div className="phone-mockup-screen">
+        <img
+          src={thumbnailSrc}
+          alt={alt}
+          className="w-full h-full object-cover object-top"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+);
+
 export const ProjectCard: React.FC<Props> = ({ project, onSelectProject, layoutVariant = "normal" }) => {
   const { videoRef, hasError, setHasError } = useViewportVideo(0.45);
   const isComposition = layoutVariant === "composition";
+  const isUiUx = project.type === "uiux";
 
   const getAspectRatioClass = () => {
     if (isComposition) {
@@ -28,15 +51,29 @@ export const ProjectCard: React.FC<Props> = ({ project, onSelectProject, layoutV
   const objectPositionClass = project.type === "webtoon" ? "object-top" : "object-center";
   const mediaFitClass = `w-full h-full object-cover ${objectPositionClass}`;
 
+  const handleClick = () => {
+    if (isUiUx) {
+      window.open(FIGMA_PROTOTYPE_URL, "_blank", "noopener,noreferrer");
+    } else {
+      onSelectProject(project);
+    }
+  };
+
+  // Use local thumbnail for the phone screen
+  const uiuxThumb = isUiUx ? "/uiux/academic-portal-thumb.jpg" : "";
+
   return (
     <motion.article
       whileHover={{ y: -3 }}
       transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       className={`group cursor-pointer flex flex-col w-full select-none ${isComposition ? "h-full min-h-0" : ""}`}
-      onClick={() => onSelectProject(project)}
+      onClick={handleClick}
     >
       <div className={`relative w-full ${getAspectRatioClass()} bg-beige/20 overflow-hidden flex items-center justify-center border border-beige/40 rounded-sm`}>
-        {project.type === "motion" ? (
+        {isUiUx ? (
+          /* Phone mockup for UI/UX project */
+          <PhoneMockup thumbnailSrc={uiuxThumb} alt={project.title} />
+        ) : project.type === "motion" ? (
           !hasError && project.previewVideo ? (
             <video
               ref={videoRef}
@@ -79,7 +116,7 @@ export const ProjectCard: React.FC<Props> = ({ project, onSelectProject, layoutV
 
         <div className="absolute inset-0 bg-charcoal/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 pointer-events-none">
           <span className="text-cream text-[11px] font-mono tracking-wider uppercase bg-charcoal/85 backdrop-blur-xs px-3 py-1.5 rounded-full inline-flex items-center gap-1.5 opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
-            View Project <FiArrowUpRight className="text-xs" />
+            {isUiUx ? "View Figma Prototype" : "View Project"} <FiArrowUpRight className="text-xs" />
           </span>
         </div>
       </div>

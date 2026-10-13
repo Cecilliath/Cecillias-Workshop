@@ -68,7 +68,7 @@ const MOTION_CV_ID = "1ztLLmKSNEMbyUXDvbPt547zSwMCv4GpB";
 const DOVE_ID = "1Ms3yyqZUS_WK7SyfJLkkmf7p5RuIoWa-";
 const SDG_ID = "13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn";
 const TRAVELOKA_ID = "1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2";
-const WEBTOON_ID = "webtoon-harta-arwah-penuntun";
+const WEBTOON_ID = "webtoon-setelah-lampu-padam";
 const COMPOSITION_IDS = [SDG_ID, DOVE_ID, WEBTOON_ID, TRAVELOKA_ID];
 
 export const HomeScreen: React.FC = () => {
@@ -137,7 +137,7 @@ export const HomeScreen: React.FC = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.55, delay: 0.08 }}
-                      className="font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.08] tracking-tight mb-4 md:mb-5 text-gray-900"
+                      className="font-display text-[clamp(1.6rem,4.2vw,3.15rem)] font-medium leading-[1.08] tracking-tight mb-4 md:mb-5 text-gray-900"
                     >
                       Cecillia
                       <br />
@@ -148,8 +148,7 @@ export const HomeScreen: React.FC = () => {
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.16 }}
-                      className="text-charcoal/65 text-[0.8rem] sm:text-sm md:text-[0.9rem] leading-[1.65] max-w-xl lg:max-w-[40
-                      .5rem] mb-4 md:mb-5 text-justify"
+                      className="text-charcoal/65 text-[0.78rem] sm:text-sm md:text-[0.9rem] leading-[1.65] max-w-xl lg:max-w-[40.5rem] mb-4 md:mb-5 text-justify"
                     >
                       I am a Visual Communication Design undergraduate at Universitas Tarumanagara
                       with a passion for digital illustration, graphic design, branding, motion
@@ -230,7 +229,7 @@ export const HomeScreen: React.FC = () => {
               </div>
             </div>
 
-            <div className="px-5 md:px-10 pb-20 md:pb-24">
+            <div className="px-4 sm:px-5 md:px-10 pb-16 md:pb-24">
               <div className="max-w-7xl mx-auto">
                 <HomeTalentShowcase />
 
@@ -250,7 +249,7 @@ export const HomeScreen: React.FC = () => {
                         See full portfolio <FiArrowUpRight />
                       </a>
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                       {projectsData.slice(0, 3).map((item, i) => (
                         <div
                           key={i}
@@ -280,7 +279,7 @@ export const HomeScreen: React.FC = () => {
           <motion.section
             id="projects"
             {...fadeInUp}
-            className="relative px-6 md:px-12 py-20 md:py-28 bg-soft-white overflow-hidden"
+            className="relative px-4 sm:px-6 md:px-12 py-16 md:py-28 bg-soft-white overflow-hidden"
           >
             <FloatingDecorations variant="warm" />
 
@@ -327,7 +326,7 @@ export const HomeScreen: React.FC = () => {
                 webtoonProject &&
                 travelokaProject && (
                 <div
-                  className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)] gap-6 lg:gap-8 mb-12 lg:mb-16 lg:h-[min(48vw,530px)]"
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)] gap-4 sm:gap-6 lg:gap-8 mb-12 lg:mb-16 lg:h-[min(48vw,530px)]"
                 >
                   <div className="lg:col-start-1 lg:row-start-1 min-h-0 h-full">
                     <ProjectCard
@@ -360,7 +359,7 @@ export const HomeScreen: React.FC = () => {
                 </div>
               )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-start">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
                 {mainGridProjects.map((project, i) => (
                   <div key={project.id} className="col-span-1 w-full">
                     <ScrollReveal delay={i * 0.04}>
@@ -398,7 +397,7 @@ export const HomeScreen: React.FC = () => {
           <motion.section
             id="experience"
             {...fadeInUp}
-            className="relative px-5 md:px-10 py-20 md:py-28 overflow-hidden"
+            className="relative px-4 sm:px-5 md:px-10 py-16 md:py-28 overflow-hidden"
           >
             <FloatingDecorations />
 
@@ -450,7 +449,7 @@ export const HomeScreen: React.FC = () => {
           <motion.section
             id="contact"
             {...fadeInUp}
-            className="relative px-5 md:px-10 py-20 md:py-28 overflow-hidden"
+            className="relative px-4 sm:px-5 md:px-10 py-16 md:py-28 overflow-hidden"
           >
             <FloatingDecorations variant="warm" />
 

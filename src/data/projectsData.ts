@@ -306,20 +306,15 @@ export const projectsData: ProjectItem[] = [
     category: 'UI/UX',
     year: '2026',
     type: 'uiux',
-    thumbnail: 'https://lh3.googleusercontent.com/d/1uzkPibOPWN8LzXVqp6aunpz-UI4VH5e2=w1000',
-    description: 'A student-centered academic management mobile application design featuring intuitive course tracking, personal bio profiles, academic status updates, and streamlined mobile navigation.',
+    thumbnail: '/uiux/academic-portal-thumb.jpg',
+    description: 'A student-centered academic management mobile application UI/UX design prototype featuring intuitive course tracking, personal bio profiles, academic status updates, and streamlined mobile navigation.',
     role: 'UI/UX Designer & Mobile App Visual Strategist',
     tools: ['Figma', 'Procreate', 'Illustrator'],
     driveUrl: 'https://drive.google.com/drive/folders/1YShgtBZIrmfVat39FYyewGqaddb7Ym5K',
-    gridSpan: 'wide',
-    aspectRatio: '16/9',
-    additionalImages: [
-      'https://lh3.googleusercontent.com/d/1uzkPibOPWN8LzXVqp6aunpz-UI4VH5e2=w1000',
-      'https://lh3.googleusercontent.com/d/1taAf_dDxP8W-bszWvJOr1qsWfZpyJN0f=w1000',
-      'https://lh3.googleusercontent.com/d/1ShdMw2exEkAehSopz-pcS2y0iOou9rQ6=w1000',
-      'https://lh3.googleusercontent.com/d/1eGMI_GCGt-8ZfDoiAqPAIk7dCl32tYs0=w1000',
-    ],
+    gridSpan: 'normal',
+    aspectRatio: '4/5',
   },
+
 
   // ─── DIGITAL ILLUSTRATION ───
   {
