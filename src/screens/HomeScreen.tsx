@@ -62,6 +62,9 @@ const experience = [
   },
 ];
 
+const educationItems = experience.filter((item) => item.type === "education");
+const workItems = experience.filter((item) => item.type === "work");
+
 export const HomeScreen: React.FC = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
@@ -344,9 +347,9 @@ export const HomeScreen: React.FC = () => {
             onClose={() => setSelectedProject(null)}
           />
 
-          {/* ─── EXPERIENCE ─── */}
+          {/* ─── EDUCATION ─── */}
           <motion.section
-            id="experience"
+            id="education"
             {...fadeInUp}
             className="relative px-5 md:px-10 py-20 md:py-28 overflow-hidden"
           >
@@ -355,14 +358,14 @@ export const HomeScreen: React.FC = () => {
             <div className="max-w-6xl mx-auto relative z-10">
               <ScrollReveal>
                 <div className="mb-14">
-                  <p className="section-label mb-3">Journey</p>
-                  <h2 className="section-title">Experience</h2>
+                  <p className="section-label mb-3">Academics</p>
+                  <h2 className="section-title">Education</h2>
                   <div className="section-divider" />
                 </div>
               </ScrollReveal>
 
               <div className="space-y-6">
-                {experience.map((item, i) => (
+                {educationItems.map((item, i) => (
                   <ScrollReveal
                     key={i}
                     delay={i * 0.1}
@@ -374,9 +377,55 @@ export const HomeScreen: React.FC = () => {
                     >
                       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
                         <div className="flex-1">
-                          <span className="inline-block text-[10px] uppercase tracking-widest font-medium text-brown-light bg-beige/50 px-3 py-1 rounded-full mb-3">
-                            {item.type === "education" ? "Education" : "Experience"}
-                          </span>
+                          <h3 className="font-display text-2xl font-medium text-charcoal mb-1 group-hover:text-brown transition-colors">
+                            {item.title}
+                          </h3>
+                          <p className="text-brown font-medium text-sm mb-3">{item.role}</p>
+                          <p className="text-charcoal/55 text-sm leading-relaxed max-w-xl">
+                            {item.description}
+                          </p>
+                        </div>
+                        <p className="text-sm text-charcoal/40 font-medium whitespace-nowrap md:pt-8">
+                          {item.period}
+                        </p>
+                      </div>
+                    </motion.div>
+                  </ScrollReveal>
+                ))}
+              </div>
+            </div>
+          </motion.section>
+
+          {/* ─── EXPERIENCE ─── */}
+          <motion.section
+            id="experience"
+            {...fadeInUp}
+            className="relative px-5 md:px-10 py-20 md:py-28 overflow-hidden"
+          >
+            <FloatingDecorations />
+
+            <div className="max-w-6xl mx-auto relative z-10">
+              <ScrollReveal>
+                <div className="mb-14">
+                  <p className="section-label mb-3">Career</p>
+                  <h2 className="section-title">Experience</h2>
+                  <div className="section-divider" />
+                </div>
+              </ScrollReveal>
+
+              <div className="space-y-6">
+                {workItems.map((item, i) => (
+                  <ScrollReveal
+                    key={i}
+                    delay={i * 0.1}
+                    direction={i % 2 === 0 ? "left" : "right"}
+                  >
+                    <motion.div
+                      whileHover={{ x: i % 2 === 0 ? 6 : -6 }}
+                      className="card-soft p-6 md:p-8 hover:shadow-card transition-shadow duration-300 group"
+                    >
+                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                        <div className="flex-1">
                           <h3 className="font-display text-2xl font-medium text-charcoal mb-1 group-hover:text-brown transition-colors">
                             {item.title}
                           </h3>
