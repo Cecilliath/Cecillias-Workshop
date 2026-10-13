@@ -18,10 +18,11 @@ const stats = [
 ];
 
 const recruiterHighlights = [
-  "B.A. Desain Komunikasi Visual · Universitas Tarumanagara",
-  "CREBO committee · campus exhibitions & event branding",
-  "Intermediate Adobe, Figma & Blender",
-  "English (Fluent) · Indonesian (Native)",
+  "B.A. Visual Communication Design · Universitas Tarumanagara (2024–2027)",
+  "Graphic Design, Digital Illustration, Branding & Motion Graphics",
+  "Creative & Organizational Experience · Event Promotion, Visual Communication & Team Collaboration",
+  "Canva, Procreate, Adobe Creative Suite & Figma",
+  " Indonesian (Native) · English (Fluent) · Mandarin (Conversational)",
 ];
 
 const SkillIcon: React.FC<{ item: SkillItem; large?: boolean }> = ({ item, large }) => {

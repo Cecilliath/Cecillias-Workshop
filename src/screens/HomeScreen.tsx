@@ -34,7 +34,7 @@ const experience = [
     type: "education" as const,
     title: "Universitas Tarumanagara",
     role: "B.A. Desain Komunikasi Visual",
-    period: "2024 — 2028",
+    period: "2024 — 2027",
     description:
       "Pursuing Visual Communication Design with focus on branding, editorial design, and digital media.",
   },
