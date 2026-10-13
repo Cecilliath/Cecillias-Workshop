@@ -42,25 +42,40 @@ const experience = [
     type: "education" as const,
     title: "Bina Tunas Bangsa",
     role: "Science",
-    period: "2020 — 2023",
-    description:
-      "High school foundation in analytical thinking and creative problem-solving.",
-  },
-  {
-    type: "work" as const,
-    title: "CREBO 3 — Universitas Tarumanagara",
-    role: "Committee Member",
-    period: "2024 — 2025",
-    description:
-      "Contributed to event branding, visual assets, and creative direction for campus exhibition.",
+    period: "2011-2021",
+
   },
   {
     type: "work" as const,
     title: "CREBO 2 — Universitas Tarumanagara",
-    role: "Committee Member",
-    period: "2024 — 2025",
+    role: "Committee Member - Illustration Division",
+    period: "Sept 2024 — Feb 2025",
     description:
-      "Designed promotional materials and managed visual identity for creative showcase event.",
+      "Created digital illustrations, character designs, and promotional visuals for social media and print. Collaborated with the design team and supported event production through 3D decorations and venue setup.",
+  },
+  {
+    type: "work" as const,
+    title: "CREBO 3 — Universitas Tarumanagara",
+    role: "Committee Member - Graphic Design Division",
+    period: "Apr 2025 - Sept 2025",
+    description:
+      "Designed promotional graphics, Instagram layouts, and official committee merchandise while maintaining visual consistency. Collaborated on event decorations and managed merchandise booth operations.",
+  },
+  {
+    type: "work" as const,
+    title: "Astarika — Universitas Tarumanagara",
+    role: "Committee Member",
+    period: "Apr 2025 - Sept 2025",
+    description:
+      "Designed competition certificates, assisted with judge coordination during the event, and participated in the illustration competition.",
+  },
+  {
+    type: "work" as const,
+    title: "Sloosh!— Entrepreneurship Course Project",
+    role: "Co-Founder & Brand Designer",
+    period: "Mar 2026 - Jun 2026",
+    description:
+      "Co-developed a beverage brand through customer research, brand identity design, packaging, and marketing. Supported product development, budgeting, and sales operations, contributing to 70+ beverages sold over three days.",
   },
 ];
 

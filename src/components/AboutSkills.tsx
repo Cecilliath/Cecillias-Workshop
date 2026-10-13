@@ -136,7 +136,7 @@ export const AboutSkills: React.FC = () => {
             Software
           </h4>
           <p className="text-xs text-charcoal/45 mb-5">
-            Intermediate Adobe (Illustrator, After Effects & Photoshop) · Figma · Blender
+            Intermediate Adobe (Illustrator, After Effects & Photoshop) · Figma · Procreate
           </p>
         </ScrollReveal>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">

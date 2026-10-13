@@ -63,20 +63,20 @@ export const softwareSkills: SkillItem[] = [
     color: "#F24E1E",
   },
   {
-    name: "Blender",
+    name: "Procreate",
     icon: SiBlender,
-    detail: "3D Design",
-    color: "#E87D0D",
+    detail: "Illustration",
+    color: "#00A8E8",
   },
 ];
 
 export const softSkills: SkillItem[] = [
   { name: "Leadership", icon: HiOutlineStar },
   { name: "Teamwork", icon: HiOutlineUserGroup },
-  { name: "Communication", icon: HiOutlineChatBubbleLeftRight },
-  { name: "Creativity", icon: HiOutlineLightBulb },
-  { name: "Analytical Thinking", icon: HiOutlineChartBar },
-  { name: "Critical Thinking", icon: HiOutlineMagnifyingGlassCircle },
+  { name: "Visual Research & Concept Development", icon: HiOutlineChatBubbleLeftRight },
+  { name: "Communication", icon: HiOutlineLightBulb },
+  { name: "Creative Problem-Solving", icon: HiOutlineChartBar },
+  { name: "Critical  Thinking", icon: HiOutlineMagnifyingGlassCircle },
   { name: "Emotional Intelligence", icon: HiOutlineHeart },
 ];
 
