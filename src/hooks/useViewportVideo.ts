@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export function useViewportVideo() {
+export function useViewportVideo(threshold = 0.45) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -9,7 +9,6 @@ export function useViewportVideo() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Ensure initial attributes for autoplay
     video.muted = true;
     video.loop = true;
     video.playsInline = true;
@@ -17,7 +16,7 @@ export function useViewportVideo() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && entry.intersectionRatio >= threshold) {
             const playPromise = video.play();
             if (playPromise !== undefined) {
               playPromise
@@ -26,17 +25,19 @@ export function useViewportVideo() {
                   setHasError(false);
                 })
                 .catch((err) => {
-                  console.warn("Autoplay suppressed by browser policy:", err);
+                  console.warn("Autoplay suppressed by browser:", err);
                   setIsPlaying(false);
                 });
             }
           } else {
-            video.pause();
+            if (!video.paused) {
+              video.pause();
+            }
             setIsPlaying(false);
           }
         });
       },
-      { threshold: 0.25 }
+      { threshold: [0, threshold] }
     );
 
     observer.observe(video);
@@ -45,7 +46,7 @@ export function useViewportVideo() {
       observer.unobserve(video);
       observer.disconnect();
     };
-  }, []);
+  }, [threshold]);
 
   return { videoRef, isPlaying, hasError, setHasError };
 }

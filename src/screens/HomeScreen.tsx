@@ -15,10 +15,12 @@ import { FloatingDecorations } from "../components/FloatingDecorations";
 
 import portrait from "/me.jpeg";
 import { projectsData, filterCategories } from "../data/projectsData";
-import type { ProjectCategory, ProjectItem } from "../data/projectsData";
-import { FeaturedMotionCV } from "../components/FeaturedMotionCV";
+import type { FilterCategory, ProjectItem } from "../data/projectsData";
 import { ProjectCard } from "../components/ProjectCard";
+import { FeaturedMotionCV } from "../components/FeaturedMotionCV";
+import { ProjectCategoryFilter } from "../components/ProjectCategoryFilter";
 import { ProjectDetailModal } from "../components/ProjectDetailModal";
+import { WebtoonDetailView } from "../components/WebtoonDetailView";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 32 },
@@ -64,15 +66,39 @@ const experience = [
 
 const educationItems = experience.filter((item) => item.type === "education");
 const workItems = experience.filter((item) => item.type === "work");
+const MOTION_CV_ID = "1ztLLmKSNEMbyUXDvbPt547zSwMCv4GpB";
+const DOVE_ID = "1Ms3yyqZUS_WK7SyfJLkkmf7p5RuIoWa-";
+const SDG_ID = "13hEFnfS8c25WMOhtBvwVXz5bG4EupQpn";
+const TRAVELOKA_ID = "1NaHd5zr5TYA0w191-YH4AMhtM8ccXwF2";
+const WEBTOON_ID = "webtoon-setelah-lampu-padam";
+const COMPOSITION_IDS = [SDG_ID, DOVE_ID, WEBTOON_ID, TRAVELOKA_ID];
 
 export const HomeScreen: React.FC = () => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [showLoader, setShowLoader] = useState(true);
-  const [activeFilter, setActiveFilter] = useState<ProjectCategory>("ALL");
+  const [activeFilter, setActiveFilter] = useState<FilterCategory>("ALL");
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
 
-  const featuredMotionCV = projectsData.find((p) => p.isFeatured);
-  const filteredProjects = projectsData.filter((p) => {
+  const motionCvProject = projectsData.find((p) => p.id === MOTION_CV_ID);
+  const doveProject = projectsData.find((p) => p.id === DOVE_ID);
+  const sdgProject = projectsData.find((p) => p.id === SDG_ID);
+  const travelokaProject = projectsData.find((p) => p.id === TRAVELOKA_ID);
+  const webtoonProject = projectsData.find((p) => p.id === WEBTOON_ID);
+
+  const showFeaturedMotionCv =
+    !!motionCvProject &&
+    (activeFilter === "ALL" || activeFilter === "MOTION VIDEO");
+
+  const showSpecialComposition =
+    activeFilter === "ALL" &&
+    !!sdgProject &&
+    !!doveProject &&
+    !!webtoonProject &&
+    !!travelokaProject;
+
+  const mainGridProjects = projectsData.filter((p) => {
+    if (showFeaturedMotionCv && p.id === MOTION_CV_ID) return false;
+    if (showSpecialComposition && COMPOSITION_IDS.includes(p.id)) return false;
     if (activeFilter === "ALL") return true;
     return p.category === activeFilter;
   });
@@ -113,7 +139,7 @@ export const HomeScreen: React.FC = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.55, delay: 0.08 }}
-                      className="font-display text-[clamp(1.85rem,4.2vw,3.15rem)] font-medium leading-[1.08] tracking-tight mb-4 md:mb-5 text-gray-900"
+                      className="font-display text-[clamp(1.6rem,4.2vw,3.15rem)] font-medium leading-[1.08] tracking-tight mb-4 md:mb-5 text-gray-900"
                     >
                       Cecillia
                       <br />
@@ -124,8 +150,7 @@ export const HomeScreen: React.FC = () => {
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.16 }}
-                      className="text-charcoal/65 text-[0.8rem] sm:text-sm md:text-[0.9rem] leading-[1.65] max-w-xl lg:max-w-[40
-                      .5rem] mb-4 md:mb-5 text-justify"
+                      className="text-charcoal/65 text-[0.78rem] sm:text-sm md:text-[0.9rem] leading-[1.65] max-w-xl lg:max-w-[40.5rem] mb-4 md:mb-5 text-justify"
                     >
                       I am a Visual Communication Design undergraduate at Universitas Tarumanagara
                       with a passion for digital illustration, graphic design, branding, motion
@@ -206,7 +231,7 @@ export const HomeScreen: React.FC = () => {
               </div>
             </div>
 
-            <div className="px-5 md:px-10 pb-20 md:pb-24">
+            <div className="px-4 sm:px-5 md:px-10 pb-16 md:pb-24">
               <div className="max-w-7xl mx-auto">
                 <HomeTalentShowcase />
 
@@ -226,7 +251,7 @@ export const HomeScreen: React.FC = () => {
                         See full portfolio <FiArrowUpRight />
                       </a>
                     </div>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                       {projectsData.slice(0, 3).map((item, i) => (
                         <div
                           key={i}
@@ -252,98 +277,121 @@ export const HomeScreen: React.FC = () => {
             </div>
           </section> 
 
-          {/* ─── PROJECTS ─── */}
+          {/* ─── EDITORIAL PORTFOLIO / PROJECTS SECTION ─── */}
           <motion.section
             id="projects"
             {...fadeInUp}
-            className="relative px-5 md:px-10 py-20 md:py-28 bg-soft-white overflow-hidden"
+            className="relative px-4 sm:px-6 md:px-12 py-16 md:py-28 bg-soft-white overflow-hidden"
           >
             <FloatingDecorations variant="warm" />
 
             <div className="max-w-6xl mx-auto relative z-10">
               <ScrollReveal>
-                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8">
                   <div>
-                    <p className="section-label mb-2">SELECTED WORKS</p>
-                    <div className="flex items-center gap-3 flex-wrap mb-2">
-                      <h2 className="section-title">Projects & Visual Work</h2>
-                      <a
-                        href="https://drive.google.com/drive/folders/1WROCCh04L3UvlNd59WW6BZ0HldeFqsb5?usp=drive_link"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-xs text-brown font-medium hover:underline bg-beige/40 px-3 py-1.5 rounded-full border border-beige/60 transition-colors"
-                      >
-                        <SiGoogledrive className="text-emerald-600 text-sm" />
-                        Google Drive Folder
-                        <FiArrowUpRight className="text-xs" />
-                      </a>
-                    </div>
+                    <p className="font-display text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-charcoal mb-2">
+                      PORTFOLIO
+                    </p>
                     <div className="section-divider" />
                   </div>
-                  <p className="text-charcoal/60 text-sm md:text-base max-w-md md:text-right">
-                    A collection of selected works across motion, graphic design, illustration, and digital media.
-                  </p>
+                  <a
+                    href="https://drive.google.com/drive/folders/1WROCCh04L3UvlNd59WW6BZ0HldeFqsb5?usp=drive_link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-xs font-mono text-brown hover:underline bg-beige/40 px-3.5 py-1.5 rounded-full border border-beige/60 transition-colors shrink-0 mb-2"
+                  >
+                    <SiGoogledrive className="text-emerald-600 text-sm" />
+                    Drive Archive ↗
+                  </a>
                 </div>
               </ScrollReveal>
 
-              {/* Category Filter Pills */}
-              <div className="flex flex-wrap items-center gap-2 md:gap-2.5 mb-12">
-                {filterCategories.map((category) => {
-                  const isActive = activeFilter === category;
-                  return (
-                    <button
-                      key={category}
-                      type="button"
-                      onClick={() => setActiveFilter(category)}
-                      className={`rounded-full px-4 py-2 text-xs md:text-sm font-medium transition-all ${
-                        isActive
-                          ? "bg-charcoal text-cream shadow-sm"
-                          : "bg-cream text-charcoal/70 border border-beige/80 hover:border-charcoal/30 hover:bg-cream/80"
-                      }`}
-                    >
-                      {category}
-                    </button>
-                  );
-                })}
+              {/* Category Filter Navigation */}
+              <div className="mb-10 lg:mb-12">
+                <ProjectCategoryFilter
+                  categories={filterCategories}
+                  activeCategory={activeFilter}
+                  onSelectCategory={(category) => setActiveFilter(category)}
+                />
               </div>
 
-              {/* FEATURED MOTION CV (Shown at top for ALL or MOTION filter) */}
-              {(activeFilter === "ALL" || activeFilter === "MOTION") && featuredMotionCV && (
+              {showFeaturedMotionCv && motionCvProject && (
                 <FeaturedMotionCV
-                  project={featuredMotionCV}
+                  project={motionCvProject}
                   onSelectProject={(p) => setSelectedProject(p)}
                 />
               )}
 
-              {/* EDITORIAL PROJECT GRID */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-start">
-                {filteredProjects
-                  .filter((p) => !(p.isFeatured && (activeFilter === "ALL" || activeFilter === "MOTION")))
-                  .map((project, i) => (
-                    <ScrollReveal
-                      key={project.id}
-                      delay={i * 0.06}
-                      direction={i % 2 === 0 ? "up" : "scale"}
-                    >
+              {showSpecialComposition &&
+                sdgProject &&
+                doveProject &&
+                webtoonProject &&
+                travelokaProject && (
+                <div
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-[minmax(0,1fr)_minmax(0,1fr)] gap-4 sm:gap-6 lg:gap-8 mb-12 lg:mb-16 lg:h-[min(48vw,530px)]"
+                >
+                  <div className="lg:col-start-1 lg:row-start-1 min-h-0 h-full">
+                    <ProjectCard
+                      project={sdgProject}
+                      onSelectProject={(p) => setSelectedProject(p)}
+                      layoutVariant="composition"
+                    />
+                  </div>
+                  <div className="lg:col-start-1 lg:row-start-2 min-h-0 h-full">
+                    <ProjectCard
+                      project={doveProject}
+                      onSelectProject={(p) => setSelectedProject(p)}
+                      layoutVariant="composition"
+                    />
+                  </div>
+                  <div className="lg:col-start-2 lg:row-start-1 lg:row-span-2 min-h-0 h-full">
+                    <ProjectCard
+                      project={webtoonProject}
+                      onSelectProject={(p) => setSelectedProject(p)}
+                      layoutVariant="composition"
+                    />
+                  </div>
+                  <div className="lg:col-start-3 lg:row-start-1 lg:row-span-2 min-h-0 h-full">
+                    <ProjectCard
+                      project={travelokaProject}
+                      onSelectProject={(p) => setSelectedProject(p)}
+                      layoutVariant="composition"
+                    />
+                  </div>
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
+                {mainGridProjects.map((project, i) => (
+                  <div key={project.id} className="col-span-1 w-full">
+                    <ScrollReveal delay={i * 0.04}>
                       <ProjectCard
                         project={project}
                         onSelectProject={(p) => setSelectedProject(p)}
+                        layoutVariant="normal"
                       />
                     </ScrollReveal>
-                  ))}
+                  </div>
+                ))}
               </div>
 
-              {filteredProjects.length === 0 && (
-                <p className="text-sm text-charcoal/45 text-center py-16">
+              {mainGridProjects.length === 0 && !showFeaturedMotionCv && !showSpecialComposition && (
+                <p className="text-sm text-charcoal/45 font-mono text-center py-20 uppercase tracking-wider">
                   No projects available in this category yet.
                 </p>
               )}
             </div>
           </motion.section>
 
-          {/* PROJECT DETAIL MODAL */}
+          {/* WEBTOON DEDICATED READER VIEW */}
+          <WebtoonDetailView
+            project={selectedProject?.type === "webtoon" ? selectedProject : null}
+            onClose={() => setSelectedProject(null)}
+          />
+
+          {/* STANDARD PROJECT DETAIL MODAL */}
           <ProjectDetailModal
-            project={selectedProject}
+            project={selectedProject?.type !== "webtoon" ? selectedProject : null}
             onClose={() => setSelectedProject(null)}
           />
 
@@ -400,7 +448,7 @@ export const HomeScreen: React.FC = () => {
           <motion.section
             id="experience"
             {...fadeInUp}
-            className="relative px-5 md:px-10 py-20 md:py-28 overflow-hidden"
+            className="relative px-4 sm:px-5 md:px-10 py-16 md:py-28 overflow-hidden"
           >
             <FloatingDecorations />
 
@@ -449,7 +497,7 @@ export const HomeScreen: React.FC = () => {
           <motion.section
             id="contact"
             {...fadeInUp}
-            className="relative px-5 md:px-10 py-20 md:py-28 overflow-hidden"
+            className="relative px-4 sm:px-5 md:px-10 py-16 md:py-28 overflow-hidden"
           >
             <FloatingDecorations variant="warm" />
 
