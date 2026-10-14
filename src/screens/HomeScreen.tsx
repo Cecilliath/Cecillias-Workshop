@@ -222,10 +222,16 @@ export const HomeScreen: React.FC = () => {
                       transition={{ duration: 0.5, delay: 0.28 }}
                       className="flex flex-col sm:flex-row gap-3"
                     >
-                      <button className="btn-primary gap-2 text-sm py-2.5 px-5">
+                      <a
+                        target="_blank"
+                        href="/CV Cecillia Tan Handoko - Graphic Designer.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-primary gap-2 text-sm py-2.5 px-5"
+                      >
                         <FiDownload />
                         Download CV
-                      </button>
+                      </a>
                       <Link to="/certifications">
                         <button className="btn-outline w-full sm:w-auto text-sm py-2.5 px-5">
                           View Certifications
@@ -604,4 +610,3 @@ export const HomeScreen: React.FC = () => {
     </>
   );
 };
-

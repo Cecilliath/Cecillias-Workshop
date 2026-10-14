@@ -72,7 +72,7 @@ export async function fetchGoogleDriveProjects(
         const snippetBefore = fHtml.slice(Math.max(0, pos - 1500), pos);
 
         const idMatches = [...snippetBefore.matchAll(/\[(?:null,)?"([a-zA-Z0-9_-]{25,45})"\]/g)];
-        const mimeMatches = [...snippetBefore.matchAll(/"(application\/[a-zA-Z0-9\.\+-]+|image\/[a-zA-Z0-9\.\+-]+|video\/[a-zA-Z0-9\.\+-]+)"/g)];
+        const mimeMatches = [...snippetBefore.matchAll(/"(application\/[a-zA-Z0-9.+-]+|image\/[a-zA-Z0-9.+-]+|video\/[a-zA-Z0-9.+-]+)"/g)];
 
         const lastId = idMatches.length ? idMatches[idMatches.length - 1][1] : null;
         const lastMime = mimeMatches.length ? mimeMatches[mimeMatches.length - 1][1] : "image/png";

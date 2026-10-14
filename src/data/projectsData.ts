@@ -1,6 +1,6 @@
 export type FilterCategory = 'ALL' | 'MOTION VIDEO' | 'GRAPHIC DESIGN' | 'BRANDING' | 'DIGITAL ILLUSTRATION' | 'WEBTOON' | 'UI/UX';
 
-export type ProjectType = 'motion' | 'poster' | 'character' | 'webtoon' | 'apparel' | 'digital' | 'uiux';
+export type ProjectType = 'motion' | 'poster' | 'character' | 'webtoon' | 'apparel' | 'digital' | 'uiux' | 'logo';
 
 export interface WebtoonEpisode {
   episodeNumber: string;
@@ -447,4 +447,3 @@ export const projectsData: ProjectItem[] = [
     aspectRatio: '4/5',
   },
 ];
-
