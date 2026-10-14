@@ -28,7 +28,7 @@ export const HeroPortrait: React.FC<HeroPortraitProps> = ({
   onLoad,
 }) => {
   return (
-    <div className="relative w-full max-w-[22rem] sm:max-w-[26rem] md:max-w-[30rem] lg:max-w-[34rem] xl:max-w-[38rem] mx-auto lg:ml-auto lg:mr-0">
+    <div className="relative w-full max-w-[22rem] sm:max-w-[26rem] md:max-w-[30rem] lg:max-w-[34rem] xl:max-w-[38rem] mx-auto lg:ml-auto lg:mr-0]">
       <motion.div
         className="absolute -top-2 -left-3 sm:-left-6 w-5 h-5 rounded-full bg-blush-dark/50"
         animate={{ y: [0, -6, 0] }}

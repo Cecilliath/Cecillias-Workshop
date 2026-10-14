@@ -129,7 +129,7 @@ export const HomeScreen: React.FC = () => {
         {showLoader && <PageLoader onLoadComplete={() => {}} />}
       </AnimatePresence>
 
-      <div className="flex flex-col min-h-screen bg-cream text-charcoal">
+      <div className="flex flex-col min-h-screen bg-cream text-charcoal mt-10">
         <NavBar />
 
         <main className="flex-grow">
@@ -232,7 +232,7 @@ export const HomeScreen: React.FC = () => {
                         Download CV
                       </a>
                       <Link to="/certifications">
-                        <button className="btn-outline w-full sm:w-auto text-sm py-2.5 px-5">
+                        <button className="btn-outline w-full sm:w-auto text-sm py-2.5 px-5 ">
                           View Certifications
                         </button>
                       </Link>
@@ -245,13 +245,13 @@ export const HomeScreen: React.FC = () => {
                       alt="Cecillia Tan Handoko"
                       loaded={imgLoaded}
                       onLoad={() => setImgLoaded(true)}
-                    />
+                   />
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="px-4 sm:px-5 md:px-10 pb-16 md:pb-24">
+            <div className="mt-20 sm:mt-0 sm:mt-0 px-4 sm:px-5 md:px-10 pb-16 md:pb-24">
               <div className="max-w-7xl mx-auto">
                 <HomeTalentShowcase />
 
