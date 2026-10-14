@@ -225,7 +225,6 @@ export const HomeScreen: React.FC = () => {
                       <a
                         target="_blank"
                         href="/CV Cecillia Tan Handoko - Graphic Designer.pdf"
-                        target="_blank"
                         rel="noopener noreferrer"
                         className="btn-primary gap-2 text-sm py-2.5 px-5"
                       >
