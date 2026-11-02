@@ -239,7 +239,7 @@ export const HomeScreen: React.FC = () => {
                     </motion.div>
                   </div>
 
-                  <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end items-center lg:-translate-y-16">
+                  <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end items-center lg:-translate-y-15 lg:mt-[-20px]">
                     <HeroPortrait
                       src={portrait}
                       alt="Cecillia Tan Handoko"
