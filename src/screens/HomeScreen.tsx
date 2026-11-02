@@ -140,7 +140,7 @@ export const HomeScreen: React.FC = () => {
             <div className="relative min-h-[calc(100dvh-4rem)] max-h-[920px] flex items-center px-5 md:px-10 pt-[4.5rem] pb-6 md:pb-8">
               <div className="relative z-10 max-w-7xl mx-auto w-full">
                 <div className="grid lg:grid-cols-12 gap-6 lg:gap-10 items-center">
-                  <div id="about" className="lg:col-span-7 order-2 lg:order-1 scroll-mt-28">
+                  <div id="about" className="lg:col-span-7 order-2 lg:order-1 scroll-mt-28 lg:-translate-y-10">
                     <motion.p
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -239,7 +239,7 @@ export const HomeScreen: React.FC = () => {
                     </motion.div>
                   </div>
 
-                  <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end items-center">
+                  <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center lg:justify-end items-center lg:-translate-y-16">
                     <HeroPortrait
                       src={portrait}
                       alt="Cecillia Tan Handoko"
